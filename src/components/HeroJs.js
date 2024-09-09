@@ -1,4 +1,4 @@
-    document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function () {
     const titleElement1 = document.getElementById("animatedTitle");
     const titleElement2 = document.getElementById("animatedTitle2");
     const cursorElement = document.getElementById("cursor");

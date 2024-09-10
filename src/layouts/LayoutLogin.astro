@@ -1,8 +1,7 @@
 ---
-import Footer from '../components/Footer.astro';
-import Header from '../components/Header.astro';
-import Hero from '../components/Hero.astro';
-import Section from '../components/Section.astro';
+import Login from '../components/Login.astro';
+
+
 interface Props {
 	title: string;
 }
@@ -20,11 +19,7 @@ const { title } = Astro.props;
 		<title>{title}</title>
 	</head>
 	<body>
-		<Header/>
-		<slot />
-		<Hero/>
-
-		<Footer />
+		<Login/>
 	</body>
 </html>
 

@@ -3,6 +3,7 @@ import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import Hero from '../components/Hero.astro';
 import Section from '../components/Section.astro';
+import Contacto from '../components/Contacto.astro';
 interface Props {
 	title: string;
 }
@@ -23,7 +24,13 @@ const { title } = Astro.props;
 		<Header/>
 		<slot />
 		<Hero/>
-
+		<slot />
+		<Section>
+			<section>
+				
+			</section>
+		</Section>	
+		<Contacto/>
 		<Footer />
 	</body>
 </html>

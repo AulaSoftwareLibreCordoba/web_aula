@@ -3,14 +3,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMailReply } from "@fortawesome/free-solid-svg-icons";
 ---
 
-<section class="bg-gradient-to-r from-[#0a0a2a] via-[#0f0f35] to-[#0a0a40] relative">
+<section class="bg-gradient-to-b from-[#0a0a2a] via-[#0d0d43] to-transparent relative pb-[4.6rem] md:pb-20">
   <div class="container mx-auto px-4 md:px-6 lg:px-8">
-    <div class="flex flex-col md:flex-row items-center md:items-start justify-center md:gap-12 lg:gap-20">
+    <div class="flex flex-col lg:flex-row items-center lg:items-start justify-center lg:gap-12 xl:gap-20">
       <div class="w-full md:w-1/3 max-w-md mt-16 text-center md:text-left">
-        <h1 class="text-white text-4xl md:text-5xl font-bold flex items-center justify-center md:justify-start gap-5">
+        <h1 class="text-white text-4xl md:text-5xl font-bold flex items-center justify-center lg:justify-start gap-5">
           Contacto <FontAwesomeIcon icon={faMailReply} className="text-blue-600 size-8" />
         </h1>
-        <span class="text-slate-400 text-sm">
+        <span class="text-slate-400 text-sm text-center">
           Contacta con nosotros para más información y unirte a nuestra
           maravillosa comunidad.
         </span>
@@ -19,7 +19,7 @@ import { faMailReply } from "@fortawesome/free-solid-svg-icons";
         action="https://formsubmit.co/alvaroofernaandez@gmail.com"
         method="POST"
         id="contacto"
-        class="w-full md:w-2/3 max-w-lg mt-16 mb-32"
+        class="w-full md:w-2/3 max-w-lg mt-16"
       >
         <div class="relative mb-6">
           <input
@@ -53,15 +53,15 @@ import { faMailReply } from "@fortawesome/free-solid-svg-icons";
             oninput="this.style.height = 'auto'; this.style.height = (this.scrollHeight) + 'px';"
           ></textarea>
         </div>
-        <div class="mt-4 text-center md:text-right">
+        <div class="mt-4 text-center lg:text-right">
           <button
             type="submit"
-            class="cursor-pointer w-auto mb-10 inline-flex items-center justify-center py-3 px-6 text-base font-semibold text-center text-white rounded-full bg-blue-600 shadow-xs hover:bg-blue-800 hover:scale-105 transition-all duration-500"
+            class="cursor-pointer w-auto inline-flex items-center justify-center py-3 px-6 text-base font-semibold text-center text-white rounded-full bg-blue-600 shadow-xs hover:bg-blue-800 hover:scale-105 transition-all duration-500"
             >Enviar</button
           >
         </div>
       </form>
     </div>
   </div>
-  <div class="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-b from-transparent via-[rgba(13,13,67,0.5)] to-[#0d0d43]"></div>
+  <div class="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-b from-transparent via-[rgba(13,13,67,0.5)] to-[#0d0d43]"></div>
 </section>

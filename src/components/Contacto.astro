@@ -1,0 +1,67 @@
+---
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMailReply } from "@fortawesome/free-solid-svg-icons";
+---
+
+<section class="bg-gradient-to-r from-[#0a0a2a] via-[#0f0f35] to-[#0a0a40] relative">
+  <div class="px-4 md:px-0">
+    <div class="flex items-center justify-center gap-28">
+      <div class="grid md:flex items-start">
+        <div class="w-full md:w-1/3 pr-0 md:pr-8 mt-16 md:ml-10 text-center md:text-left">
+          <h1 class="text-white text-5xl font-bold flex items-center gap-5">Contacto <FontAwesomeIcon icon={faMailReply} className="text-blue-600 size-8" /> </h1>
+          <span class="text-slate-400 text-sm">
+            Contacta con nosotros para más información y unirte a nuestra
+            maravillosa comunidad.
+          </span>
+        </div>
+        <form
+          action="https://formsubmit.co/alvaroofernaandez@gmail.com"
+          method="POST"
+          id="contacto"
+          class="w-full md:w-2/3 mt-16 mb-32 mr-10"
+        >
+          <div class="relative mb-6">
+            <input
+              type="email"
+              name="email"
+              class="peer block min-h-[auto] w-full rounded border-b-2 border-slate-400 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:border-b-2 focus:border-blue-600 text-white placeholder:text-neutral-500"
+              id="email"
+              placeholder="Correo electrónico"
+              required
+            />
+          </div>
+          <div class="relative mb-6">
+            <input
+              type="text"
+              name="asunto"
+              class="peer block min-h-[auto] w-full rounded border-b-2 border-slate-400 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:border-b-2 focus:border-blue-600 text-white placeholder:text-neutral-500"
+              id="asunto"
+              placeholder="Asunto"
+              required
+            />
+          </div>
+          <div class="relative mb-6">
+            <textarea
+              name="mensaje"
+              class="peer block min-h-[auto] w-full rounded border-b-2 border-slate-400 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:border-b-2 focus:border-blue-600 text-white placeholder:text-neutral-500 resize-none overflow-hidden"
+              id="mensaje"
+              placeholder="Mensaje"
+              required
+              maxlength="400"
+              rows="1"
+              oninput="this.style.height = 'auto'; this.style.height = (this.scrollHeight) + 'px';"
+            ></textarea>
+          </div>
+          <div class="mt-4 text-center md:text-right">
+            <button
+              type="submit"
+              class="cursor-pointer w-auto mb-10 inline-flex items-center justify-center py-3 px-6 text-base font-semibold text-center text-white rounded-full bg-blue-600 shadow-xs hover:bg-blue-800 hover:scale-105 transition-all duration-500"
+              >Enviar</button
+            >
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-b from-transparent via-[rgba(13,13,67,0.5)] to-[#0d0d43]"></div>
+</section>

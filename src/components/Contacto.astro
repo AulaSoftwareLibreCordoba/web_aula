@@ -1,6 +1,8 @@
 ---
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMailReply } from "@fortawesome/free-solid-svg-icons";
+
+const apiUrl = import.meta.env.ENDPOINT_MAILS;
 ---
 
 <section class="bg-gradient-to-b from-[#0a0a2a] via-[#0d0d43] to-transparent relative pb-[4.6rem] md:pb-20">
@@ -15,35 +17,24 @@ import { faMailReply } from "@fortawesome/free-solid-svg-icons";
           maravillosa comunidad.
         </span>
       </div>
+
       <form
-        action="https://formsubmit.co/beab82fec9726f554c899ced6de3192b"
-        method="POST"
         id="contacto"
         class="w-full md:w-2/3 max-w-lg mt-16"
       >
         <div class="relative mb-6">
           <input
-            type="email"
-            name="email"
-            class="peer block min-h-[auto] w-full rounded border-b-2 border-slate-400 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:border-b-2 focus:border-blue-600 text-white placeholder:text-neutral-500"
-            id="email"
-            placeholder="Correo electrónico"
-            required
-          />
-        </div>
-        <div class="relative mb-6">
-          <input
             type="text"
-            name="asunto"
+            name="subject"
             class="peer block min-h-[auto] w-full rounded border-b-2 border-slate-400 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:border-b-2 focus:border-blue-600 text-white placeholder:text-neutral-500"
             id="asunto"
-            placeholder="Asunto"
+            placeholder="Introduce tu nombre o tu correo electrónico"
             required
           />
         </div>
         <div class="relative mb-6">
           <textarea
-            name="mensaje"
+            name="message"
             class="peer block min-h-[auto] w-full rounded border-b-2 border-slate-400 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:border-b-2 focus:border-blue-600 text-white placeholder:text-neutral-500 resize-none overflow-hidden"
             id="mensaje"
             placeholder="Mensaje"
@@ -61,7 +52,49 @@ import { faMailReply } from "@fortawesome/free-solid-svg-icons";
           >
         </div>
       </form>
+
     </div>
   </div>
   <div class="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-b from-transparent via-[rgba(13,13,67,0.5)] to-[#0d0d43]"></div>
 </section>
+
+<script define:vars={{ apiUrl }}>
+  const formulario = document.getElementById('contacto');
+
+  if (formulario) {
+    formulario.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const formData = new FormData(formulario);
+      const toUser = "auladesoftwarelibre@gmail.com";
+      const subject = "From: " + formData.get('subject');
+      const message = formData.get('message');
+
+      try {
+        const response = await fetch(apiUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            toUser: [toUser],
+            subject,
+            message
+          })
+        });
+
+        if (response.ok) {
+          alert('Mensaje enviado con éxito');
+          formulario.reset();
+        } else {
+          throw new Error('Error al enviar el mensaje');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        alert('Hubo un error al enviar el mensaje. Por favor, inténtalo de nuevo.');
+      }
+    });
+  } else {
+    console.error('El formulario no se encontró en el DOM');
+  }
+</script>

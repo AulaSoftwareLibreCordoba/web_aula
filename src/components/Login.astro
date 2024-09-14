@@ -1,5 +1,7 @@
 ---
 import Footer from "./Footer.astro";
+
+const apiUrl = import.meta.env.ENDPOINT_LOGIN;
 ---
 
 <section
@@ -30,23 +32,25 @@ import Footer from "./Footer.astro";
           </div>
 
           <div class="-mb-12 md:mb-0 md:w-8/12 lg:w-5/12 xl:w-5/12">
-            <form>
+            <form id="login">
               <div class="relative mb-6">
                 <input
+                  name="username"
                   type="text"
                   class="peer block min-h-[auto] w-full rounded border-b-2 border-slate-400 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:border-b-2 focus:border-blue-600 text-white placeholder:text-transparent"
-                  id="email"
+                  id="username"
                   placeholder=" "
                 />
                 <label
-                  for="email"
+                  for="username"
                   class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.15rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-valid:-translate-y-[1.15rem] peer-valid:scale-[0.8] peer-valid:text-primary"
-                  >Correo electrónico</label
+                  >Nombre de usuario</label
                 >
               </div>
 
               <div class="relative mb-6">
                 <input
+                  name="password"
                   type="password"
                   class="peer block min-h-[auto] w-full rounded border-b-2 border-slate-400 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:border-b-2 focus:border-blue-600 text-white placeholder:text-transparent"
                   id="password"
@@ -61,7 +65,7 @@ import Footer from "./Footer.astro";
 
               <div class="text-center lg:text-left">
                 <button
-                  type="button"
+                  type="submit"
                   class="hover:scale-105 ease-in-out inline-block w-full rounded bg-primary px-7 pb-2 pt-3 text-sm font-medium uppercase leading-normal text-white shadow-primary-3 transition-all duration-300 bg-blue-600 hover:bg-blue-800 hover:shadow-primary-2 focus:bg-primary-accent-300 focus:shadow-primary-2 focus:outline-none focus:ring-0"
                 >
                   Iniciar sesión
@@ -85,3 +89,81 @@ import Footer from "./Footer.astro";
     <Footer />
   </footer>
 </section>
+
+
+<div id="alertContainer" class="fixed bottom-10 right-4 flex justify-center items-end z-50 hidden">
+  <div id="alertMessage" class="bg-blue-500 text-white px-6 py-4 rounded-lg shadow-lg">
+    <!-- El mensaje de alerta se insertará aquí -->
+  </div>
+</div>
+
+
+<script define:vars={{ apiUrl }}>
+
+  const formulario = document.getElementById('login');
+  const alertContainer = document.getElementById('alertContainer');
+  const alertMessage = document.getElementById('alertMessage');
+
+  function showAlert(message, isError = false) {
+    alertMessage.textContent = message;
+    alertMessage.className = isError
+      ? 'bg-red-500 text-white px-6 py-4 rounded-lg shadow-lg'
+      : 'bg-green-500 text-white px-6 py-4 rounded-lg shadow-lg';
+    alertContainer.classList.remove('hidden');
+    setTimeout(() => {
+      alertContainer.classList.add('hidden');
+    }, 3000);
+  }
+
+  function clearForm() {
+    formulario.reset();
+  }
+
+  if (formulario) {
+    formulario.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const formData = new FormData(formulario);
+      const username = formData.get('username');
+      const password = formData.get('password');
+
+      try {
+        const response = await fetch(apiUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            username,
+            password,
+            roleRequest:{
+              roleListName: [
+                  "USER"
+              ]
+            }
+          })
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          console.log('Token JWT:', data.jwt);
+          localStorage.setItem('token', data.jwt);
+          localStorage.setItem('username', username);
+          showAlert('Bienvenido, redirigiendo a inicio...', false);
+          setTimeout(() => {
+              window.location.href = '/';
+            }, 500);
+        } else {
+          showAlert('Usuario o contraseña incorrecta', true);
+          clearForm();
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        showAlert('Hubo un error al iniciar sesión. Por favor, inténtalo de nuevo.', true);
+        clearForm();
+      }
+    });
+  } else {
+    console.error('El formulario no se encontró en el DOM');
+  }
+</script>

@@ -54,13 +54,14 @@ const apiUrl = import.meta.env.ENDPOINT_REGISTER;
 
               <div class="relative mb-6">
                 <input
+                  name="confirmPassword"
                   type="password"
                   class="peer block min-h-[auto] w-full rounded border-b-2 border-slate-400 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:border-b-2 focus:border-blue-600 text-white placeholder:text-transparent"
-                  id="password"
+                  id="confirmPassword"
                   placeholder=" "
                 />
                 <label
-                  for="password"
+                  for="confirmPassword"
                   class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.15rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-valid:-translate-y-[1.15rem] peer-valid:scale-[0.8] peer-valid:text-primary"
                 >Repetir Contraseña</label>
               </div>
@@ -90,7 +91,7 @@ const apiUrl = import.meta.env.ENDPOINT_REGISTER;
 </section>
 
 <div id="alertContainer" class="fixed bottom-10 right-4 flex justify-center items-end z-50 hidden">
-  <div id="alertMessage" class="bg-blue-500 text-white px-6 py-4 rounded-lg shadow-lg">
+  <div id="alertMessage" class="flex flex-col gap-2 w-72 sm:w-80 text-xs sm:text-sm z-50">
     <!-- El mensaje de alerta se insertará aquí -->
   </div>
 </div>
@@ -101,14 +102,44 @@ const apiUrl = import.meta.env.ENDPOINT_REGISTER;
   const alertMessage = document.getElementById('alertMessage');
 
   function showAlert(message, isError = false) {
-    alertMessage.textContent = message;
-    alertMessage.className = isError
-      ? 'bg-red-700 text-white font-bold px-6 py-4 rounded-lg shadow-lg'
-      : 'bg-green-700 text-white font-bold px-6 py-4 rounded-lg shadow-lg';
+    const alertClass = isError ? 'error-alert' : 'succsess-alert';
+    const iconColor = isError ? 'text-[#d65563]' : 'text-[#2b9875]';
+    const iconPath = isError
+      ? 'M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z'
+      : 'm4.5 12.75 6 6 9-13.5';
+
+    alertMessage.innerHTML = `
+      ${!isError ? `
+        <div class="flex flex-row gap-2 mb-2 justify-center">
+          <div class="w-4 h-4 rounded-full bg-blue-700 animate-bounce [animation-delay:.3s]"></div>
+          <div class="w-4 h-4 rounded-full bg-blue-700 animate-bounce [animation-delay:.1s]"></div>
+          <div class="w-4 h-4 rounded-full bg-blue-700 animate-bounce [animation-delay:.2s]"></div>
+        </div>
+      ` : ''}
+      <div class="${alertClass} cursor-default flex items-center justify-between w-full h-auto min-h-[4rem] rounded-lg bg-[#262768] px-[12px] py-[8px]">
+        <div class="flex gap-3 items-center">
+          <div class="${iconColor} bg-white/5 backdrop-blur-xl p-1.5 rounded-lg flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7">
+              <path stroke-linecap="round" stroke-linejoin="round" d="${iconPath}"></path>
+            </svg>
+          </div>
+          <div class="flex-1">
+            <p class="text-white font-semibold">${isError ? 'Error' : 'Bienvenido'}</p>
+            <p class="text-gray-400">${message}</p>
+          </div>
+        </div>
+        <button class="text-gray-600 hover:bg-white/5 p-1.5 rounded-md transition-colors ease-linear flex items-center justify-center ml-2" onclick="document.getElementById('alertContainer').classList.add('hidden')">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+    `;
     alertContainer.classList.remove('hidden');
-    setTimeout(() => {
-      alertContainer.classList.add('hidden');
-    }, 3000);
+  }
+
+  function clearForm() {
+    formulario.reset();
   }
 
   if (formulario) {
@@ -118,6 +149,13 @@ const apiUrl = import.meta.env.ENDPOINT_REGISTER;
       const formData = new FormData(formulario);
       const username = formData.get('username');
       const password = formData.get('password');
+      const confirmPassword = formData.get('confirmPassword');
+
+      if (password !== confirmPassword) {
+        showAlert('Las contraseñas no coinciden. Por favor, inténtalo de nuevo.', true);
+        clearForm();
+        return;
+      }
 
       try {
         const response = await fetch(apiUrl, {
@@ -142,7 +180,7 @@ const apiUrl = import.meta.env.ENDPOINT_REGISTER;
           localStorage.setItem('token', data.jwt);
           localStorage.setItem('username', username);
           showAlert('Registro exitoso');
-          formulario.reset();
+          clearForm();
           
           // Verificar si el token existe y redirigir
           if (data.jwt) {
@@ -160,6 +198,7 @@ const apiUrl = import.meta.env.ENDPOINT_REGISTER;
       } catch (error) {
         console.error('Error:', error);
         showAlert('Hubo un error al crear tu cuenta. Por favor, inténtalo de nuevo.', true);
+        clearForm();
         setTimeout(() => {
           window.location.href = '/login';
         }, 3000);

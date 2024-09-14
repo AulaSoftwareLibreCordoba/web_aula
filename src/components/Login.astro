@@ -71,9 +71,11 @@ const apiUrl = import.meta.env.ENDPOINT_LOGIN;
                   Iniciar sesión
                 </button>
                 <p class="text-gray-500 m-5 mb-11">
-                  ¿No tienes una cuenta? 
-                  <a href="/register"
-                    class="underline hover:text-white transition-all duration-500">
+                  ¿No tienes una cuenta?
+                  <a
+                    href="/register"
+                    class="underline hover:text-white transition-all duration-500"
+                  >
                     Regístrate
                   </a>
                 </p>
@@ -90,29 +92,62 @@ const apiUrl = import.meta.env.ENDPOINT_LOGIN;
   </footer>
 </section>
 
-
-<div id="alertContainer" class="fixed bottom-10 right-4 flex justify-center items-end z-50 hidden">
-  <div id="alertMessage" class="bg-blue-500 text-white px-6 py-4 rounded-lg shadow-lg">
+<div
+  id="alertContainer"
+  class="fixed bottom-10 right-4 flex justify-center items-end z-50 hidden"
+>
+  <div
+    id="alertMessage"
+    class="flex flex-col gap-2 w-72 sm:w-80 text-xs sm:text-sm z-50"
+  >
     <!-- El mensaje de alerta se insertará aquí -->
   </div>
 </div>
 
-
 <script define:vars={{ apiUrl }}>
-
-  const formulario = document.getElementById('login');
-  const alertContainer = document.getElementById('alertContainer');
-  const alertMessage = document.getElementById('alertMessage');
+  const formulario = document.getElementById("login");
+  const alertContainer = document.getElementById("alertContainer");
+  const alertMessage = document.getElementById("alertMessage");
 
   function showAlert(message, isError = false) {
-    alertMessage.textContent = message;
-    alertMessage.className = isError
-    ? 'bg-red-700 text-white font-bold px-6 py-4 rounded-lg shadow-lg'
-    : 'bg-green-700 text-white font-bold px-6 py-4 rounded-lg shadow-lg';
-    alertContainer.classList.remove('hidden');
-    setTimeout(() => {
-      alertContainer.classList.add('hidden');
-    }, 3000);
+    const alertClass = isError ? "error-alert" : "succsess-alert";
+    const iconColor = isError ? "text-[#d65563]" : "text-[#2b9875]";
+    const iconPath = isError
+      ? "M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z"
+      : "m4.5 12.75 6 6 9-13.5";
+
+    alertMessage.innerHTML = `
+      ${
+        !isError
+          ? `
+    <div class="flex flex-row gap-2 mb-2 justify-center">
+      <div class="w-4 h-4 rounded-full bg-white animate-bounce [animation-delay:.3s]"></div>
+      <div class="w-4 h-4 rounded-full bg-white animate-bounce [animation-delay:.1s]"></div>
+      <div class="w-4 h-4 rounded-full bg-white animate-bounce [animation-delay:.2s]"></div>
+    </div>
+      `
+          : ""
+      }
+      <div class="${alertClass} cursor-default flex items-center justify-between w-full h-auto min-h-[4rem] rounded-lg bg-[#262768] px-[12px] py-[8px]">
+        <div class="flex gap-3 items-center">
+          <div class="${iconColor} bg-white/5 backdrop-blur-xl p-1.5 rounded-lg flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7">
+              <path stroke-linecap="round" stroke-linejoin="round" d="${iconPath}"></path>
+            </svg>
+          </div>
+          <div class="flex-1">
+            <p class="text-white font-semibold">${isError ? "Error" : "Bienvenido"}</p>
+            <p class="text-gray-400">${message}</p>
+          </div>
+        </div>
+        <button class="text-gray-600 hover:bg-white/5 p-1.5 rounded-md transition-colors ease-linear flex items-center justify-center ml-2" onclick="document.getElementById('alertContainer').classList.add('hidden')">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+    `;
+    alertContainer.classList.remove("hidden");
   }
 
   function clearForm() {
@@ -120,50 +155,51 @@ const apiUrl = import.meta.env.ENDPOINT_LOGIN;
   }
 
   if (formulario) {
-    formulario.addEventListener('submit', async (e) => {
+    formulario.addEventListener("submit", async (e) => {
       e.preventDefault();
-      
+
       const formData = new FormData(formulario);
-      const username = formData.get('username');
-      const password = formData.get('password');
+      const username = formData.get("username");
+      const password = formData.get("password");
 
       try {
         const response = await fetch(apiUrl, {
-          method: 'POST',
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
           body: JSON.stringify({
             username,
             password,
-            roleRequest:{
-              roleListName: [
-                  "USER"
-              ]
-            }
-          })
+            roleRequest: {
+              roleListName: ["USER"],
+            },
+          }),
         });
 
         if (response.ok) {
           const data = await response.json();
-          console.log('Token JWT:', data.jwt);
-          localStorage.setItem('token', data.jwt);
-          localStorage.setItem('username', username);
-          showAlert('Bienvenido, redirigiendo a inicio...', false);
+          console.log("Token JWT:", data.jwt);
+          localStorage.setItem("token", data.jwt);
+          localStorage.setItem("username", username);
+          showAlert("Bienvenido, redirigiendo a inicio...", false);
           setTimeout(() => {
-              window.location.href = '/';
-            }, 500);
+            window.location.href = "/";
+          }, 500);
         } else {
-          showAlert('Usuario o contraseña incorrecta', true);
+          showAlert("Usuario o contraseña incorrecta", true);
           clearForm();
         }
       } catch (error) {
-        console.error('Error:', error);
-        showAlert('Hubo un error al iniciar sesión. Por favor, inténtalo de nuevo.', true);
+        console.error("Error:", error);
+        showAlert(
+          "Hubo un error al iniciar sesión. Por favor, inténtalo de nuevo.",
+          true
+        );
         clearForm();
       }
     });
   } else {
-    console.error('El formulario no se encontró en el DOM');
+    console.error("El formulario no se encontró en el DOM");
   }
 </script>

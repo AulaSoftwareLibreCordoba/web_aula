@@ -109,6 +109,13 @@ const apiUrl = import.meta.env.ENDPOINT_REGISTER;
       : 'm4.5 12.75 6 6 9-13.5';
 
     alertMessage.innerHTML = `
+      ${!isError ? `
+        <div class="flex flex-row gap-2 mb-2 justify-center">
+          <div class="w-4 h-4 rounded-full bg-blue-700 animate-bounce [animation-delay:.3s]"></div>
+          <div class="w-4 h-4 rounded-full bg-blue-700 animate-bounce [animation-delay:.1s]"></div>
+          <div class="w-4 h-4 rounded-full bg-blue-700 animate-bounce [animation-delay:.2s]"></div>
+        </div>
+      ` : ''}
       <div class="${alertClass} cursor-default flex items-center justify-between w-full h-auto min-h-[4rem] rounded-lg bg-[#262768] px-[12px] py-[8px]">
         <div class="flex gap-3 items-center">
           <div class="${iconColor} bg-white/5 backdrop-blur-xl p-1.5 rounded-lg flex items-center justify-center">

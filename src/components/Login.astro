@@ -107,8 +107,8 @@ const apiUrl = import.meta.env.ENDPOINT_LOGIN;
   function showAlert(message, isError = false) {
     alertMessage.textContent = message;
     alertMessage.className = isError
-      ? 'bg-red-500 text-white px-6 py-4 rounded-lg shadow-lg'
-      : 'bg-green-500 text-white px-6 py-4 rounded-lg shadow-lg';
+    ? 'bg-red-700 text-white font-bold px-6 py-4 rounded-lg shadow-lg'
+    : 'bg-green-700 text-white font-bold px-6 py-4 rounded-lg shadow-lg';
     alertContainer.classList.remove('hidden');
     setTimeout(() => {
       alertContainer.classList.add('hidden');

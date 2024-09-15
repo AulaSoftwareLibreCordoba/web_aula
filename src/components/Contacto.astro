@@ -58,8 +58,53 @@ const apiUrl = import.meta.env.ENDPOINT_MAILS;
   <div class="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-b from-transparent via-[rgba(13,13,67,0.5)] to-[#0d0d43]"></div>
 </section>
 
+<div id="alertContainer" class="fixed bottom-10 right-4 flex justify-center items-end z-50 hidden">
+  <div id="alertMessage" class="flex flex-col gap-2 w-72 sm:w-80 text-xs sm:text-sm z-50">
+    <!-- El mensaje de alerta se insertará aquí -->
+  </div>
+</div>
+
 <script define:vars={{ apiUrl }}>
   const formulario = document.getElementById('contacto');
+  const alertContainer = document.getElementById('alertContainer');
+  const alertMessage = document.getElementById('alertMessage');
+
+  function showAlert(message, isError = false) {
+    const alertClass = isError ? 'error-alert' : 'success-alert';
+    const iconColor = isError ? 'text-[#d65563]' : 'text-[#2b9875]';
+    const iconPath = isError
+      ? 'M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z'
+      : 'm4.5 12.75 6 6 9-13.5';
+
+    alertMessage.innerHTML = `
+      ${!isError ? `
+        <div class="flex flex-row gap-2 mb-2 justify-center">
+          <div class="w-4 h-4 rounded-full bg-blue-700 animate-bounce [animation-delay:.3s]"></div>
+          <div class="w-4 h-4 rounded-full bg-blue-700 animate-bounce [animation-delay:.1s]"></div>
+          <div class="w-4 h-4 rounded-full bg-blue-700 animate-bounce [animation-delay:.2s]"></div>
+        </div>
+      ` : ''}
+      <div class="${alertClass} cursor-default flex items-center justify-between w-full h-auto min-h-[4rem] rounded-lg bg-[#262768] px-[12px] py-[8px]">
+        <div class="flex gap-3 items-center">
+          <div class="${iconColor} bg-white/5 backdrop-blur-xl p-1.5 rounded-lg flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7">
+              <path stroke-linecap="round" stroke-linejoin="round" d="${iconPath}"></path>
+            </svg>
+          </div>
+          <div class="flex-1">
+            <p class="text-white font-semibold">${isError ? 'Error' : 'Éxito'}</p>
+            <p class="text-gray-400">${message}</p>
+          </div>
+        </div>
+        <button class="text-gray-600 hover:bg-white/5 p-1.5 rounded-md transition-colors ease-linear flex items-center justify-center ml-2" onclick="document.getElementById('alertContainer').classList.add('hidden')">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+    `;
+    alertContainer.classList.remove('hidden');
+  }
 
   if (formulario) {
     formulario.addEventListener('submit', async (e) => {
@@ -84,14 +129,14 @@ const apiUrl = import.meta.env.ENDPOINT_MAILS;
         });
 
         if (response.ok) {
-          alert('Mensaje enviado con éxito');
+          showAlert('Mensaje enviado con éxito');
           formulario.reset();
         } else {
           throw new Error('Error al enviar el mensaje');
         }
       } catch (error) {
         console.error('Error:', error);
-        alert('Hubo un error al enviar el mensaje. Por favor, inténtalo de nuevo.');
+        showAlert('Hubo un error al enviar el mensaje. Por favor, inténtalo de nuevo.', true);
       }
     });
   } else {

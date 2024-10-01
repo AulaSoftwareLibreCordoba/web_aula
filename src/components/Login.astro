@@ -184,7 +184,7 @@ const apiUrl = import.meta.env.ENDPOINT_LOGIN;
           localStorage.setItem("username", username);
           showAlert("Bienvenido, redirigiendo a inicio...", false);
           setTimeout(() => {
-            window.location.href = "/";
+            window.location.href = "/aula";
           }, 500);
         } else {
           showAlert("Usuario o contraseña incorrecta", true);

@@ -4,6 +4,8 @@ import Header from '../components/Header.astro';
 import Hero from '../components/Hero.astro';
 import Section from '../components/Section.astro';
 import Contacto from '../components/Contacto.astro';
+import "../styles/global.css";
+
 interface Props {
 	title: string;
 }
@@ -23,13 +25,9 @@ const { title } = Astro.props;
 	<body>
 		<Header/>
 		<slot />
-		<Hero/>
+		<Hero client:visible/>
 		<slot />
-		<Section>
-			<section>
-				
-			</section>
-		</Section>	
+		<Section client:visible/>
 		<Contacto/>
 		<Footer />
 	</body>

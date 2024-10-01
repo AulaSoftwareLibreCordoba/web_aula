@@ -13,9 +13,6 @@
       </li>
     </ul>
     <ul class="flex gap-3 text-slate-400 mr-5">
-      <li id="welcomeMessage" class="hidden">
-        <span class="text-slate-400 text-xs"></span>
-      </li>
       <li>
         <a href="#contacto" class="hover:text-white transition-all duration-300">
           Contacto
@@ -24,17 +21,3 @@
     </ul>
   </div>
 </header>
-
-<script>
-  const welcomeMessage = document.getElementById('welcomeMessage');
-  const token = localStorage.getItem('token');
-  const username = localStorage.getItem('username');
-
-  if (token && username && welcomeMessage) {
-    welcomeMessage.classList.remove('hidden');
-    const span = welcomeMessage.querySelector('span');
-    if (span) {
-      span.textContent = `Bienvenido/a, ${username}`;
-    }
-  }
-</script>

@@ -1,0 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Onest:wght@700&display=swap');
+
+body {
+    font-family: 'Onest', sans-serif;
+}
+
+h1 {
+    font-weight: bold;
+}

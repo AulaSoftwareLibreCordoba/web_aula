@@ -26,7 +26,7 @@ const apiUrl = import.meta.env.ENDPOINT_MAILS;
           <input
             type="text"
             name="subject"
-            class="peer block min-h-[auto] w-full rounded border-b-2 border-slate-400 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:border-b-2 focus:border-blue-600 text-white placeholder:text-neutral-500"
+            class="peer block min-h-[auto] w-full rounded border-b-2 border-slate-400 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:border-b-2 focus:border-main text-white placeholder:text-neutral-500"
             id="asunto"
             placeholder="Introduce tu nombre o tu correo electrónico"
             required
@@ -35,7 +35,7 @@ const apiUrl = import.meta.env.ENDPOINT_MAILS;
         <div class="relative mb-6">
           <textarea
             name="message"
-            class="peer block min-h-[auto] w-full rounded border-b-2 border-slate-400 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:border-b-2 focus:border-blue-600 text-white placeholder:text-neutral-500 resize-none overflow-hidden"
+            class="peer block min-h-[auto] w-full rounded border-b-2 border-slate-400 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:border-b-2 focus:border-main text-white placeholder:text-neutral-500 resize-none overflow-hidden"
             id="mensaje"
             placeholder="Mensaje"
             required
@@ -59,7 +59,7 @@ const apiUrl = import.meta.env.ENDPOINT_MAILS;
 
 <div id="alertContainer" class="fixed bottom-10 right-4 flex justify-center items-end z-50 hidden">
   <div id="alertMessage" class="flex flex-col gap-2 w-72 sm:w-80 text-xs sm:text-sm z-50">
-    <!-- El mensaje de alerta se insertará aquí -->
+    
   </div>
 </div>
 
@@ -68,7 +68,7 @@ const apiUrl = import.meta.env.ENDPOINT_MAILS;
   const alertContainer = document.getElementById('alertContainer');
   const alertMessage = document.getElementById('alertMessage');
 
-  function showAlert(message, isError = false) {
+  function showAlert(message, isError = false, isLoading = false) {
     const alertClass = isError ? 'error-alert' : 'success-alert';
     const iconColor = isError ? 'text-[#d65563]' : 'text-[#2b9875]';
     const iconPath = isError
@@ -76,17 +76,17 @@ const apiUrl = import.meta.env.ENDPOINT_MAILS;
       : 'm4.5 12.75 6 6 9-13.5';
 
     alertMessage.innerHTML = `
-      ${!isError ? `
-        <div class="flex flex-row gap-2 mb-2 justify-center">
-          <div class="w-4 h-4 rounded-full bg-blue-700 animate-bounce [animation-delay:.3s]"></div>
-          <div class="w-4 h-4 rounded-full bg-blue-700 animate-bounce [animation-delay:.1s]"></div>
-          <div class="w-4 h-4 rounded-full bg-blue-700 animate-bounce [animation-delay:.2s]"></div>
+      ${isLoading ? `
+        <div id="loader" class="flex flex-row gap-2 mb-2 justify-center">
+          <div class="w-4 h-4 rounded-full bg-white animate-bounce [animation-delay:.3s]"></div>
+          <div class="w-4 h-4 rounded-full bg-white animate-bounce [animation-delay:.1s]"></div>
+          <div class="w-4 h-4 rounded-full bg-white animate-bounce [animation-delay:.2s]"></div>
         </div>
       ` : ''}
-      <div class="${alertClass} cursor-default flex items-center justify-between w-full h-auto min-h-[4rem] rounded-lg bg-[#262768] px-[12px] py-[8px]">
+      <div class="${alertClass} cursor-default flex items-center justify-between w-full h-auto min-h-[4rem] rounded-lg bg-[#0d1a1c] px-[12px] py-[8px]">
         <div class="flex gap-3 items-center">
           <div class="${iconColor} bg-white/5 backdrop-blur-xl p-1.5 rounded-lg flex items-center justify-center">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7 text-white">
               <path stroke-linecap="round" stroke-linejoin="round" d="${iconPath}"></path>
             </svg>
           </div>
@@ -96,7 +96,7 @@ const apiUrl = import.meta.env.ENDPOINT_MAILS;
           </div>
         </div>
         <button class="text-gray-600 hover:bg-white/5 p-1.5 rounded-md transition-colors ease-linear flex items-center justify-center ml-2" onclick="document.getElementById('alertContainer').classList.add('hidden')">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7 text-white">
             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"></path>
           </svg>
         </button>
@@ -115,6 +115,8 @@ const apiUrl = import.meta.env.ENDPOINT_MAILS;
       const message = formData.get('message');
 
       try {
+        showAlert('Enviando mensaje...', false, true);
+        
         const response = await fetch(apiUrl, {
           method: 'POST',
           headers: {

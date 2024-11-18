@@ -16,14 +16,15 @@ const { title } = Astro.props;
 		<meta name="description" content="Astro description" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image" href="../../logo.svg" />
+		<link rel="stylesheet" href="/styles/global.css">
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 	</head>
 	<body>
-		<Header/>
+		<Header client:visible/>
 		<slot />
 
-		<Footer />
+		<Footer client:visible/>
 	</body>
 </html>
 

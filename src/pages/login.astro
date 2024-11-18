@@ -1,6 +1,194 @@
 ---
-import LayoutAuth from '../layouts/LayoutLogin.astro';
+import Layout from "../layouts/Layout.astro";
+
+const apiUrl = import.meta.env.ENDPOINT_LOGIN;
 ---
 
-<LayoutAuth title="Aula Software Libre - Inicio de sesión">
-</LayoutAuth>
+<Layout title="Aula Software Libre - Inicio de sesión">
+  <section
+    class="min-h-screen flex flex-col bg-hero-gradient bg-center bg-cover"
+  >
+    <div
+      class="flex-grow flex flex-col items-center justify-center pt-32 md:pt-24 lg:pt-28 xl:pt-32 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center"
+    >
+      <h1
+        class="max-w-lg mx-auto font-bold text-4xl md:text-5xl xl:text-6xl text-white mb-16 leading-tight"
+      >
+        <span class="text-white">Inicio de </span>
+        <span class="text-main">sesión</span>
+      </h1>
+
+      <section
+        class="w-full max-w-xl mx-auto px-8 py-12 bg-[#14272a]/30 rounded-xl backdrop-blur-sm mb-32"
+      >
+        <div class="h-full">
+          <div class="flex h-full flex-wrap items-center justify-center">
+            <div class="w-full max-w-md">
+              <form id="login">
+                <div class="relative mb-6">
+                  <input
+                    name="username"
+                    type="text"
+                    class="peer block min-h-[auto] w-full rounded border-b-2 border-slate-400 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:border-b-2 focus:border-main text-white placeholder:text-transparent"
+                    id="username"
+                    placeholder=" "
+                  />
+                  <label
+                    for="username"
+                    class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.15rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-valid:-translate-y-[1.15rem] peer-valid:scale-[0.8] peer-valid:text-primary"
+                    >Nombre de usuario</label
+                  >
+                </div>
+
+                <div class="relative mb-6">
+                  <input
+                    name="password"
+                    type="password"
+                    class="peer block min-h-[auto] w-full rounded border-b-2 border-slate-400 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:border-b-2 focus:border-main text-white placeholder:text-transparent"
+                    id="password"
+                    placeholder=" "
+                  />
+                  <label
+                    for="password"
+                    class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.15rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-valid:-translate-y-[1.15rem] peer-valid:scale-[0.8] peer-valid:text-primary"
+                    >Contraseña</label
+                  >
+                </div>
+
+                <div class="text-center">
+                  <button
+                    type="submit"
+                    class="hover:scale-105 ease-in-out inline-block w-full rounded bg-primary px-7 pb-2 pt-3 text-sm font-medium uppercase leading-normal text-slate-800 shadow-primary-3 transition-all duration-300 bg-main hover:bg-[#a3af4a] hover:shadow-primary-2 focus:bg-primary-accent-300 focus:shadow-primary-2 focus:outline-none focus:ring-0"
+                  >
+                    Iniciar sesión
+                  </button>
+                  <p class="text-gray-500 m-5 mb-11">
+                    ¿No tienes una cuenta?
+                    <a
+                      href="/register"
+                      class="underline hover:text-white transition-all duration-500"
+                    >
+                      Regístrate
+                    </a>
+                  </p>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </section>
+
+  <div
+    id="alertContainer"
+    class="fixed bottom-10 right-4 flex justify-center items-end z-50 hidden"
+  >
+    <div
+      id="alertMessage"
+      class="flex flex-col gap-2 w-72 sm:w-80 text-xs sm:text-sm z-50"
+    >
+      <!-- El mensaje de alerta se insertará aquí -->
+    </div>
+  </div>
+
+  <script define:vars={{ apiUrl }}>
+    const formulario = document.getElementById("login");
+    const alertContainer = document.getElementById("alertContainer");
+    const alertMessage = document.getElementById("alertMessage");
+
+    function showAlert(message, isError = false) {
+      const alertClass = isError ? "error-alert" : "succsess-alert";
+      const iconColor = isError ? "text-[#d65563]" : "text-[#2b9875]";
+      const iconPath = isError
+        ? "M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z"
+        : "m4.5 12.75 6 6 9-13.5";
+
+      alertMessage.innerHTML = `
+      ${
+        !isError
+          ? `
+    <div class="flex flex-row gap-2 mb-2 justify-center">
+      <div class="w-4 h-4 rounded-full bg-white animate-bounce [animation-delay:.3s]"></div>
+      <div class="w-4 h-4 rounded-full bg-white animate-bounce [animation-delay:.1s]"></div>
+      <div class="w-4 h-4 rounded-full bg-white animate-bounce [animation-delay:.2s]"></div>
+    </div>
+      `
+          : ""
+      }
+      <div class="${alertClass} cursor-default flex items-center justify-between w-full h-auto min-h-[4rem] rounded-lg bg-[#262768] px-[12px] py-[8px]">
+        <div class="flex gap-3 items-center">
+          <div class="${iconColor} bg-white/5 backdrop-blur-xl p-1.5 rounded-lg flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7">
+              <path stroke-linecap="round" stroke-linejoin="round" d="${iconPath}"></path>
+            </svg>
+          </div>
+          <div class="flex-1">
+            <p class="text-white font-semibold">${isError ? "Error" : "Bienvenido"}</p>
+            <p class="text-gray-400">${message}</p>
+          </div>
+        </div>
+        <button class="text-gray-600 hover:bg-white/5 p-1.5 rounded-md transition-colors ease-linear flex items-center justify-center ml-2" onclick="document.getElementById('alertContainer').classList.add('hidden')">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+    `;
+      alertContainer.classList.remove("hidden");
+    }
+
+    function clearForm() {
+      formulario.reset();
+    }
+
+    if (formulario) {
+      formulario.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(formulario);
+        const username = formData.get("username");
+        const password = formData.get("password");
+
+        try {
+          const response = await fetch(apiUrl, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              username,
+              password,
+              roleRequest: {
+                roleListName: ["USER"],
+              },
+            }),
+          });
+
+          if (response.ok) {
+            const data = await response.json();
+            console.log("Token JWT:", data.jwt);
+            localStorage.setItem("token", data.jwt);
+            localStorage.setItem("username", username);
+            showAlert("Bienvenido, redirigiendo a inicio...", false);
+            setTimeout(() => {
+              window.location.href = "/aula";
+            }, 500);
+          } else {
+            showAlert("Usuario o contraseña incorrecta", true);
+            clearForm();
+          }
+        } catch (error) {
+          console.error("Error:", error);
+          showAlert(
+            "Hubo un error al iniciar sesión. Por favor, inténtalo de nuevo.",
+            true
+          );
+          clearForm();
+        }
+      });
+    } else {
+      console.error("El formulario no se encontró en el DOM");
+    }
+  </script>
+</Layout>

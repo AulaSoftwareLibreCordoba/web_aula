@@ -1,15 +1,168 @@
 ---
-import Layout from "../layouts/LayoutMain.astro";
+import Btn from "../components/Btn.astro";
+import Layout from "../layouts/Layout.astro";
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
-  <Layout title="Aula Software Libre - Aula">
-  </Layout>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <Layout title="Aula Software Libre - Aula">
+      <section
+        class="flex flex-col items-center justify-center pt-32 md:pt-24 lg:pt-28 xl:pt-32 bg-hero-gradient bg-center bg-cover bg-clip-padding"
+        aria-labelledby="main-title"
+      >
+        <div class="mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h1
+            id="main-title"
+            class="mx-auto font-bold text-4xl sm:text-5xl lg:text-6xl text-white mb-4 leading-tight"
+          >
+            <span class="text-main">Aula de Software Libre</span>
+            <br />
+            <span class="text-white">FP Córdoba</span>
+          </h1>
+
+          <nav
+            aria-label="Menú principal"
+            class="flex items-center justify-center"
+          >
+            <ul
+              class="flex sm:flex-row text-white rounded-lg bg-[#14272a] m-4 sm:m-8 md:m-10 lg:m-12 max-w-[29rem]"
+            >
+              <li>
+                <a
+                  href="#"
+                  class="block rounded-lg hover:bg-[#1d363a] p-4 transition-all duration-300"
+                  aria-label="Ir a Talleres"
+                >
+                  Talleres
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="block rounded-lg hover:bg-[#1d363a] p-4 transition-all duration-300"
+                  aria-label="Ir a Proyectos"
+                >
+                  Proyectos
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="block rounded-lg hover:bg-[#1d363a] p-4 transition-all duration-300"
+                  aria-label="Suscríbete"
+                >
+                  Eventos
+                </a>
+              </li>
+            </ul>
+          </nav>
+
+          <section id="newsletter">
+            <Btn href="" text="Suscríbete a la newsletter"/>
+          </section>
+
+          <section
+            id="equipo"
+            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-6 mt-16 mb-52 justify-items-center"
+          >
+            <div
+              class="bg-[#14272a] text-white rounded-md w-44 sm:w-52 h-60 sm:h-80 flex justify-center items-center"
+            >
+              <img
+                src=""
+                alt="Alejandro Moral"
+                class="w-full h-full object-cover rounded-md"
+              />
+            </div>
+            <div
+              class="bg-[#14272a] text-white rounded-md w-44 sm:w-52 h-60 sm:h-80 flex justify-center items-center"
+            >
+              <img
+                src=""
+                alt="Juan (masón de nivel extremo)"
+                class="w-full h-full object-cover rounded-md"
+              />
+            </div>
+            <div
+              class="bg-[#14272a] text-white rounded-md w-44 sm:w-52 h-60 sm:h-80 flex justify-center items-center"
+            >
+              <img
+                src=""
+                alt="Ignacio (masón)"
+                class="w-full h-full object-cover rounded-md"
+              />
+            </div>
+            <div
+              class="bg-[#14272a] text-white rounded-md w-44 sm:w-52 h-60 sm:h-80 flex justify-center items-center"
+            >
+              <img
+                src=""
+                alt="Álvaro (el q ha creao la web) 🐐"
+                class="w-full h-full object-cover rounded-md"
+              />
+            </div>
+            <div
+              class="bg-[#14272a] text-white rounded-md w-44 sm:w-52 h-60 sm:h-80 flex justify-center items-center"
+            >
+              <img
+                src=""
+                alt="Francisco Bermejo 🐐"
+                class="w-full h-full object-cover rounded-md"
+              />
+            </div>
+            <div
+              class="bg-[#14272a] text-white rounded-md w-44 sm:w-52 h-60 sm:h-80 flex justify-center items-center"
+            >
+              <img
+                src=""
+                alt="Foto del equipo"
+                class="w-full h-full object-cover rounded-md"
+              />
+            </div>
+            <div
+              class="bg-[#14272a] text-white rounded-md w-44 sm:w-52 h-60 sm:h-80 flex justify-center items-center"
+            >
+              <img
+                src=""
+                alt="Foto del equipo"
+                class="w-full h-full object-cover rounded-md"
+              />
+            </div>
+            <div
+              class="bg-[#14272a] text-white rounded-md w-44 sm:w-52 h-60 sm:h-80 flex justify-center items-center"
+            >
+              <img
+                src=""
+                alt="Foto del equipo"
+                class="w-full h-full object-cover rounded-md"
+              />
+            </div>
+            <div
+              class="bg-[#14272a] text-white rounded-md w-44 sm:w-52 h-60 sm:h-80 flex justify-center items-center"
+            >
+              <img
+                src=""
+                alt="Foto del equipo"
+                class="w-full h-full object-cover rounded-md"
+              />
+            </div>
+            <div
+              class="bg-[#14272a] text-white rounded-md w-44 sm:w-52 h-60 sm:h-80 flex justify-center items-center"
+            >
+              <img
+                src=""
+                alt="Foto del equipo"
+                class="w-full h-full object-cover rounded-md"
+              />
+            </div>
+          </section>
+        </div>
+      </section>
+    </Layout>
+  </body>
 </html>

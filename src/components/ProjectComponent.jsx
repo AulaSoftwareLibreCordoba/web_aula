@@ -20,7 +20,7 @@ const ProjectComponent = ({ imgSrc, altText, projectTitle, estado, description, 
       >
         <img src={imgSrc} alt={altText} className="rounded-xl" />
 
-        <div className="absolute p-10 inset-0 bg-black/80 rounded-xl text-center opacity-0 hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center">
+        <div className="absolute p-10 inset-0 bg-black/80 rounded-xl text-center opacity-0 hover:opacity-100 transition-opacity duration-500 flex flex-col justify-center items-center">
           <h1 className="important-text text-white text-2xl mt-5">
             {projectTitle}
           </h1>

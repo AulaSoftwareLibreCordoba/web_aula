@@ -1,5 +1,6 @@
 ---
 import Btn from "../components/Btn.astro";
+import PersonCard from "../components/PersonCard.astro";
 import Layout from "../layouts/Layout.astro";
 ---
 
@@ -63,103 +64,23 @@ import Layout from "../layouts/Layout.astro";
           </nav>
 
           <section id="newsletter">
-            <Btn href="" text="Suscríbete a la newsletter"/>
+            <Btn href="" text="Suscríbete a la newsletter" />
           </section>
 
           <section
             id="equipo"
-            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-6 mt-16 mb-52 justify-items-center"
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 xl:grid-cols-5 gap-6 mt-16 mb-52 justify-items-center"
           >
-            <div
-              class="bg-[#14272a] text-white rounded-md w-44 sm:w-52 h-60 sm:h-80 flex justify-center items-center"
-            >
-              <img
-                src=""
-                alt="Alejandro Moral"
-                class="w-full h-full object-cover rounded-md"
-              />
-            </div>
-            <div
-              class="bg-[#14272a] text-white rounded-md w-44 sm:w-52 h-60 sm:h-80 flex justify-center items-center"
-            >
-              <img
-                src=""
-                alt="Juan (masón de nivel extremo)"
-                class="w-full h-full object-cover rounded-md"
-              />
-            </div>
-            <div
-              class="bg-[#14272a] text-white rounded-md w-44 sm:w-52 h-60 sm:h-80 flex justify-center items-center"
-            >
-              <img
-                src=""
-                alt="Ignacio (masón)"
-                class="w-full h-full object-cover rounded-md"
-              />
-            </div>
-            <div
-              class="bg-[#14272a] text-white rounded-md w-44 sm:w-52 h-60 sm:h-80 flex justify-center items-center"
-            >
-              <img
-                src=""
-                alt="Álvaro (el q ha creao la web) 🐐"
-                class="w-full h-full object-cover rounded-md"
-              />
-            </div>
-            <div
-              class="bg-[#14272a] text-white rounded-md w-44 sm:w-52 h-60 sm:h-80 flex justify-center items-center"
-            >
-              <img
-                src=""
-                alt="Francisco Bermejo 🐐"
-                class="w-full h-full object-cover rounded-md"
-              />
-            </div>
-            <div
-              class="bg-[#14272a] text-white rounded-md w-44 sm:w-52 h-60 sm:h-80 flex justify-center items-center"
-            >
-              <img
-                src=""
-                alt="Foto del equipo"
-                class="w-full h-full object-cover rounded-md"
-              />
-            </div>
-            <div
-              class="bg-[#14272a] text-white rounded-md w-44 sm:w-52 h-60 sm:h-80 flex justify-center items-center"
-            >
-              <img
-                src=""
-                alt="Foto del equipo"
-                class="w-full h-full object-cover rounded-md"
-              />
-            </div>
-            <div
-              class="bg-[#14272a] text-white rounded-md w-44 sm:w-52 h-60 sm:h-80 flex justify-center items-center"
-            >
-              <img
-                src=""
-                alt="Foto del equipo"
-                class="w-full h-full object-cover rounded-md"
-              />
-            </div>
-            <div
-              class="bg-[#14272a] text-white rounded-md w-44 sm:w-52 h-60 sm:h-80 flex justify-center items-center"
-            >
-              <img
-                src=""
-                alt="Foto del equipo"
-                class="w-full h-full object-cover rounded-md"
-              />
-            </div>
-            <div
-              class="bg-[#14272a] text-white rounded-md w-44 sm:w-52 h-60 sm:h-80 flex justify-center items-center"
-            >
-              <img
-                src=""
-                alt="Foto del equipo"
-                class="w-full h-full object-cover rounded-md"
-              />
-            </div>
+            <PersonCard imgSrc="/person.avif" altText="Foto integrante" name="Alejandro Moral Bermejo" />
+            <PersonCard imgSrc="/person.avif" altText="Foto integrante" name="Juan Deogracias Moya"/>
+            <PersonCard imgSrc="/person.avif" altText="Foto integrante" name="Ignacio de Loyola Díaz"/>
+            <PersonCard imgSrc="/person.avif" altText="Foto integrante" name="Álvaro Fernández Amaro"/>
+            <PersonCard imgSrc="/person.avif" altText="Foto integrante" name="Francisco Bermejo Melero"/>
+            <PersonCard imgSrc="/person.avif" altText="Foto integrante" name="Manuel Torres Alcázar"/>
+            <PersonCard imgSrc="/person.avif" altText="Foto integrante" name="Adrián Cruz Barranco"/>
+            <PersonCard imgSrc="/person.avif" altText="Foto integrante" name="Daniel Acosta Castilla"/>
+            <PersonCard imgSrc="/person.avif" altText="Foto integrante" name="Óscar Muñoz Molinero"/>
+            <PersonCard imgSrc="/person.avif" altText="Foto integrante" name="Francisco José Navarro Ruiz"/>
           </section>
         </div>
       </section>

@@ -1,0 +1,15 @@
+---
+const { imgSrc, altText, name } = Astro.props;
+---
+
+<div class="relative bg-[#14272a] cursor-pointer text-white rounded-md w-44 sm:w-52 h-60 sm:h-80 flex justify-center items-center group">
+  <img
+    src={imgSrc}
+    alt={altText}
+    class="w-full h-full object-cover rounded-md transition-all duration-300 group-hover:opacity-100"
+  />
+  <div class="absolute top-0 left-0 w-full h-full bg-[#0a1416] opacity-60 transition-all duration-300 group-hover:opacity-0"></div>
+  <div class="bg-[#14272a] w-full important-text absolute bottom-4 text-white text-xs md:text-sm text-wrap opacity-0 transition-all duration-300 group-hover:opacity-100">
+    {name}
+  </div>
+</div>

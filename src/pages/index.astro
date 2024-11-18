@@ -6,29 +6,33 @@ import Layout from "../layouts/Layout.astro";
 
 <Layout title="Aula Software Libre - Inicio">
   <section
-    class="flex flex-col items-center justify-center pt-32 md:pt-24 lg:pt-28 xl:pt-32 bg-hero-gradient bg-center bg-cover"
+    class="min-h-screen flex flex-col justify-between pt-32 md:pt-24 lg:pt-28 xl:pt-32 bg-hero-gradient bg-center bg-cover"
   >
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+    <div
+      class="flex flex-col justify-center items-center flex-1 text-center px-4"
+    >
       <h1
-        class="max-w-lg mx-auto font-bold text-4xl md:text-5xl xl:text-6xl text-white mb-4 leading-tight"
+        class="max-w-lg mx-auto font-bold text-4xl md:text-6xl xl:text-6xl text-white mb-4"
       >
         <span class="text-white">Bienvenid@ al</span>
         <span class="text-main">Aula de Software Libre</span>
       </h1>
-      <p class="max-w-md mx-auto text-sm font-normal text-slate-300 mb-6">
+      <p
+        class="max-w-md mx-auto text-sm md:text-lg font-normal text-slate-300 mb-6"
+      >
         Transformamos Ideas en Soluciones Abiertas, Fomentando el Conocimiento y
         la Creatividad en Cada Proyecto.
       </p>
 
-      <Btn href="/register" text="Únete a nosotros"/>
-      
-      <div class="flex justify-center">
-        <img
-          src="../../photo.webp"
-          alt="Dashboard image"
-          class="rounded-t-3xl h-auto object-cover w-[90%] md:w-[65%] shadow-2xl"
-        />
-      </div>
+      <Btn href="/register" text="Únete a nosotros" />
+    </div>
+
+    <div class="w-full flex justify-center mt-auto px-4">
+      <img
+        src="/photo.webp"
+        alt="Github Img"
+        class="rounded-t-3xl h-auto w-[95%] md:w-[70%] lg:w-[60%] xl:w-[50%] object-contain shadow-2xl"
+      />
     </div>
   </section>
 

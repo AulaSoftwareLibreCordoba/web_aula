@@ -91,7 +91,7 @@ const apiUrl = import.meta.env.ENDPOINT_LOGIN;
     </div>
   </div>
 
-  <script define:vars={{ apiUrl }}>
+  <script is:inline define:vars={{ apiUrl }}>
     const formulario = document.getElementById("login");
     const alertContainer = document.getElementById("alertContainer");
     const alertMessage = document.getElementById("alertMessage");

@@ -1,21 +1,158 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Btn from "../components/Btn.astro";
+import ProjectComponent from "../components/ProjectComponent.jsx";
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
-  <Layout title="Aula Software Libre - Proyectos">
-    <section
-      class="flex flex-col items-center h-screen justify-center pt-32 md:pt-24 lg:pt-28 xl:pt-32 bg-hero-gradient bg-center bg-cover bg-clip-padding"
-      aria-labelledby="main-title"
-    >
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <Layout title="Aula Software Libre - Proyectos">
+      <main
+        class="flex flex-col items-center pt-24 md:pt-20 lg:pt-24 xl:pt-28 bg-hero-gradient bg-center bg-cover bg-clip-padding min-h-screen"
+        aria-labelledby="main-title"
+      >
+        <section class="min-h-full w-full scroll-mt-24 text-center mb-20">
+          <h1 class="text-center text-5xl p-8">
+            <span class="important-text text-white">Nuestros</span>
+            <span class="important-text text-main">proyectos</span>
+          </h1>
 
-    </section>
-  </Layout>
-</body>
+          <div class="flex flex-wrap justify-center m-10 gap-5">
+            <ProjectComponent
+              client:load
+              altText="App luna img"
+              imgSrc="/appluna.avif"
+              projectTitle="App Luna"
+              estado="Cerrado - Terminando..."
+              participantes="5"
+              description="Aplicación web para el Colegio Virgen del Carmen enfocada en luchar contra el acoso."
+              urlForm=""
+              isFull={true}
+            />
+            <ProjectComponent
+              client:load 
+              altText="Mod minecraft img"
+              imgSrc="/modMinecraft.avif"
+              projectTitle="Mod Minecraft"
+              estado="Cerrado - Iniciando..."
+              participantes="5"
+              description="Mod de minecraft creado en Java, para un servidor privado."
+              urlForm=""
+              isFull={true}
+            />
+            <ProjectComponent
+              client:load
+              altText="Ciberseguridad img"
+              imgSrc="/ciberseguridad.avif"
+              projectTitle="Ciberseguridad"
+              estado="Abierto - A iniciar"
+              participantes="1 - 5"
+              description="Proyecto de ciberseguridad con los compañeros de ASIR, cuyo objetivo es la práctica de ataque/defensa a un servidor."
+              urlForm=""
+              isFull={false}
+            />
+            <ProjectComponent
+              client:load
+              altText="Ciberseguridad img"
+              imgSrc="/ciberseguridad.avif"
+              projectTitle="Ciberseguridad"
+              estado="Abierto - A iniciar"
+              participantes="1 - 5"
+              description="Proyecto de ciberseguridad con los compañeros de ASIR, cuyo objetivo es la práctica de ataque/defensa a un servidor."
+              urlForm=""
+              isFull={false}
+            />
+            <ProjectComponent
+              client:load
+              altText="Ciberseguridad img"
+              imgSrc="/ciberseguridad.avif"
+              projectTitle="Ciberseguridad"
+              estado="Abierto - A iniciar"
+              participantes="1 - 5"
+              description="Proyecto de ciberseguridad con los compañeros de ASIR, cuyo objetivo es la práctica de ataque/defensa a un servidor."
+              urlForm=""
+              isFull={false}
+            />
+            <ProjectComponent
+              client:load
+              altText="Ciberseguridad img"
+              imgSrc="/ciberseguridad.avif"
+              projectTitle="Ciberseguridad"
+              estado="Abierto - A iniciar"
+              participantes="1 - 5"
+              description="Proyecto de ciberseguridad con los compañeros de ASIR, cuyo objetivo es la práctica de ataque/defensa a un servidor."
+              urlForm=""
+              isFull={false}
+            />
+            <ProjectComponent
+              client:load
+              altText="Ciberseguridad img"
+              imgSrc="/ciberseguridad.avif"
+              projectTitle="Ciberseguridad"
+              estado="Abierto - A iniciar"
+              participantes="1 - 5"
+              description="Proyecto de ciberseguridad con los compañeros de ASIR, cuyo objetivo es la práctica de ataque/defensa a un servidor."
+              urlForm=""
+              isFull={false}
+            />
+            <ProjectComponent
+              client:load
+              altText="Ciberseguridad img"
+              imgSrc="/ciberseguridad.avif"
+              projectTitle="Ciberseguridad"
+              estado="Abierto - A iniciar"
+              participantes="1 - 5"
+              description="Proyecto de ciberseguridad con los compañeros de ASIR, cuyo objetivo es la práctica de ataque/defensa a un servidor."
+              urlForm=""
+              isFull={false}
+            />
+          </div>
+
+          <span class="text-white"> Más proyectos próximamente... 🚀 </span>
+        </section>
+
+        <section
+          class="flex-grow w-full bg-[#14272a]/60 scroll-mt-24 flex flex-col items-center"
+        >
+          <div
+            class="container mx-auto flex flex-col md:flex-row items-center justify-between px-6 md:px-12 py-12 gap-8"
+          >
+            <div class="flex flex-col md:w-1/2">
+              <h1 class="text-center text-5xl important-text text-white mb-4">
+                <span class="important-text text-white">¿Tienes una</span>
+                <span class="important-text text-main">idea de proyecto?</span>
+              </h1>
+              <p
+                class="text-center max-w-[80%] mx-auto text-base text-slate-300"
+              >
+                Si tienes una idea innovadora que quieras desarrollar, ¡queremos
+                escucharla! Ayúdanos a construir proyectos que impacten
+                positivamente.
+              </p>
+            </div>
+
+            <div class="flex flex-col items-center md:w-1/2">
+              <img
+                src="/QR.avif"
+                alt="qr formulario"
+                width="250"
+                height="250"
+                aria-label="qr"
+                class="border-4 border-white hover:scale-105 transition-all duration-300 hover:shadow-2xl mb-6"
+              />
+              <Btn
+                href="https://forms.gle/7pKa67M89ujBXsrc7"
+                text="Accede al formulario"
+              />
+            </div>
+          </div>
+        </section>
+      </main>
+    </Layout>
+  </body>
 </html>

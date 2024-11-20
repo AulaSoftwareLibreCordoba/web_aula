@@ -42,7 +42,7 @@ const Modal = ({
           />
         </div>
 
-        <div className="flex flex-col justify-between p-6 w-full md:w-1/3 h-2/3 md:h-full">
+        <div className="flex flex-col justify-between p-6 w-full md:w-2/3 h-2/3 md:h-full">
           <h1 className="text-2xl md:text-4xl font-bold mb-4 text-center">
             {projectTitle}
           </h1>

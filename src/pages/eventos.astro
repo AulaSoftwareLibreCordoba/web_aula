@@ -1,21 +1,76 @@
 ---
+import Btn from "../components/Btn.astro";
+import LogoAula from "../components/LogoAula";
 import Layout from "../layouts/Layout.astro";
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
-  <Layout title="Aula Software Libre - Eventos">
-    <section
-      class="flex flex-col items-center h-screen justify-center pt-32 md:pt-24 lg:pt-28 xl:pt-32 bg-hero-gradient bg-center bg-cover bg-clip-padding"
-      aria-labelledby="main-title"
-    >
-      
-    </section>
-  </Layout>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <Layout title="Aula Software Libre - Eventos">
+      <main
+        class="flex flex-col justify-between min-h-screen pt-32 md:pt-24 lg:pt-28 xl:pt-32 bg-hero-gradient bg-center bg-cover bg-clip-padding"
+        aria-labelledby="main-title"
+      >
+        <section id="presentaciondescrip">
+          <h1 class="text-center text-6xl text-white">¡Nuestro primer evento!</h1>
+        </section>
+
+        <section id="ponencias">
+          <h1 class="text-center text-6xl text-main">Nuestros invitados</h1>
+        </section>
+
+        <section id="entradas">
+          <h1 class="text-center text-6xl text-white">Entradas</h1>
+        </section>
+
+        <section
+          id="ubicacion"
+          class="grid gap-10 text-center md:flex bg-[#14272a]/70 p-10 md:gap-14 justify-center"
+        >
+          <div class="md:max-w-[50%] mx-auto text-center">
+            <h1 class="text-4xl md:text-5xl mb-10">
+              <span class="important-text text-white">La</span>
+              <span class="important-text text-main">ubicación</span>
+            </h1>
+            <p
+              class="text-white text-sm md:text-base bg-[#14272a]/80 p-8 rounded-xl"
+            >
+              Como sede para nuestro primer evento de presentación del Aula de
+              Software Libre, hemos escogido un lugar muy especial: el CES Lope
+              de Vega. Este centro no solo ha sido el lugar donde surgió nuestra
+              idea, sino también un espacio que nos ha inspirado y apoyado desde
+              el inicio. Agradecemos profundamente al equipo docente y a toda la
+              comunidad del CES Lope de Vega por brindarnos su respaldo y por
+              permitirnos utilizar sus instalaciones para dar vida a este
+              proyecto. ¡Os esperamos con los brazos abiertos en este evento tan
+              significativo!
+            </p>
+
+            <hr class="mt-10 mr-20 ml-20 mb-10 border-main" />
+
+            <div class="grid md:flex items-center gap-5 justify-center">
+              <h1 class="text-white text-lg">¡Te estaremos esperando!</h1>
+                <div class="mx-auto md:mx-0"><LogoAula /></div>
+            </div>
+          </div>
+
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5994.373199427872!2d-4.757227524444446!3d37.88623210573229!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd6cdf89745b285d%3A0x6816ff8ef27013db!2sCES%20Lope%20de%20Vega!5e1!3m2!1ses!2ses!4v1732032113911!5m2!1ses!2ses"
+            width="400"
+            height="400"
+            class="mx-auto my-auto w-screen h-60 md:w-[400px] md:h-[400px] border-2 border-white"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          >
+          </iframe>
+        </section>
+      </main>
+    </Layout>
+  </body>
 </html>

@@ -9,7 +9,7 @@ const LogoAula = () => {
       viewBox="0 0 375 374.999991"
       preserveAspectRatio="xMidYMid meet"
       version="1.0"
-      className="size-12 rounded-full hover:scale-125 transition-all duration-500 max-w-full h-auto"
+      className="size-12 rounded-full "
     >
       <rect
         x="-37.5"

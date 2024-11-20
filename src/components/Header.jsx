@@ -19,9 +19,7 @@ const Header = () => {
       <div className="flex items-center h-full justify-between px-6 relative">
         <ul className="flex gap-5 text-slate-300 justify-center w-full">
           <li>
-            <a href="/" aria-label="Logo" className="flex items-center">
               <LogoAula />
-            </a>
           </li>
         </ul>
 

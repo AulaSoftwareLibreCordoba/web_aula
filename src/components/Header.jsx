@@ -17,13 +17,6 @@ const Header = () => {
   return (
     <header className="bg-gradient-to-b from-[#14272a] to-transparent w-screen h-20 fixed z-50">
       <div className="flex items-center h-full justify-between px-6 relative">
-        <a
-          href="javascript:history.back()"
-          aria-label="Back btn"
-          className="absolute top-1/2 left-4 text-slate-300 hover:text-main transition-all duration-300 text-3xl sm:text-4xl md:text-5xl lg:text-6xl transform -translate-y-1/2"
-        >
-          <FontAwesomeIcon icon={faArrowLeft} className="size-6" />
-        </a>
 
         <ul className="flex gap-5 text-slate-300 justify-center w-full">
           <li>

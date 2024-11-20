@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -21,12 +22,30 @@ const Modal = ({
     }
   };
 
+  const backdropVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1 },
+  };
+
+  const modalVariants = {
+    hidden: { y: "-100vh", opacity: 0 },
+    visible: { y: 0, opacity: 1, transition: { type: "spring", stiffness: 100 } },
+    exit: { y: "100vh", opacity: 0 },
+  };
+
   return (
-    <div
+    <motion.div
       className="fixed inset-0 bg-[#14272a]/80 flex justify-center items-center z-50"
       onClick={handleBackdropClick}
+      variants={backdropVariants}
+      initial="hidden"
+      animate="visible"
+      exit="hidden"
     >
-      <div className="bg-[#0b1516] text-white rounded-xl w-[90vw] h-[80vh] md:h-[70vh] flex flex-col md:flex-row relative overflow-hidden shadow-xl">
+      <motion.div
+        className="bg-[#0b1516] text-white rounded-xl w-[90vw] h-[80vh] md:h-[70vh] flex flex-col md:flex-row relative overflow-hidden shadow-xl"
+        variants={modalVariants}
+      >
         <button onClick={handleClose}>
           <FontAwesomeIcon
             icon={faTimes}
@@ -72,8 +91,8 @@ const Modal = ({
             )}
           </div>
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
 

@@ -1,20 +1,62 @@
 ---
-import Btn from "../components/Btn.astro";
+import Btn from "../components/Btn";
 import Contacto from "../components/Contacto.astro";
-import PersonCard from "../components/PersonCard.astro";
+import PersonCard from "../components/PersonCard";
 import Layout from "../layouts/Layout.astro";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 
 const teamMembers = [
-  { imgSrc: "/person.avif", altText: "Foto integrante", name: "Alejandro Moral Bermejo" },
-  { imgSrc: "/person.avif", altText: "Foto integrante", name: "Juan Deogracias Moya" },
-  { imgSrc: "/person.avif", altText: "Foto integrante", name: "Ignacio de Loyola Díaz Jiménez" },
-  { imgSrc: "/person.avif", altText: "Foto integrante", name: "Álvaro Fernández Amaro" },
-  { imgSrc: "/person.avif", altText: "Foto integrante", name: "Francisco Bermejo Melero" },
-  { imgSrc: "/person.avif", altText: "Foto integrante", name: "Manuel Torres Alcázar" },
-  { imgSrc: "/person.avif", altText: "Foto integrante", name: "Adrián Cruz Barranco" },
-  { imgSrc: "/person.avif", altText: "Foto integrante", name: "Daniel Acosta Castilla" },
-  { imgSrc: "/person.avif", altText: "Foto integrante", name: "Óscar Muñoz Molinero" },
-  { imgSrc: "/person.avif", altText: "Foto integrante", name: "Francisco José Navarro Ruiz" },
+  {
+    imgSrc: "/person.avif",
+    altText: "Foto integrante",
+    name: "Alejandro Moral Bermejo",
+  },
+  {
+    imgSrc: "/person.avif",
+    altText: "Foto integrante",
+    name: "Juan Deogracias Moya",
+  },
+  {
+    imgSrc: "/person.avif",
+    altText: "Foto integrante",
+    name: "Ignacio de Loyola Díaz Jiménez",
+  },
+  {
+    imgSrc: "/person.avif",
+    altText: "Foto integrante",
+    name: "Álvaro Fernández Amaro",
+  },
+  {
+    imgSrc: "/person.avif",
+    altText: "Foto integrante",
+    name: "Francisco Bermejo Melero",
+  },
+  {
+    imgSrc: "/person.avif",
+    altText: "Foto integrante",
+    name: "Manuel Torres Alcázar",
+  },
+  {
+    imgSrc: "/person.avif",
+    altText: "Foto integrante",
+    name: "Adrián Cruz Barranco",
+  },
+  {
+    imgSrc: "/person.avif",
+    altText: "Foto integrante",
+    name: "Daniel Acosta Castilla",
+  },
+  {
+    imgSrc: "/person.avif",
+    altText: "Foto integrante",
+    name: "Óscar Muñoz Molinero",
+  },
+  {
+    imgSrc: "/person.avif",
+    altText: "Foto integrante",
+    name: "Francisco José Navarro Ruiz",
+  },
 ];
 ---
 
@@ -54,6 +96,51 @@ const teamMembers = [
     </section>
 
     <section
+    class="max-w-full flex flex-col items-center justify-center pt-20 md:pt-24 lg:pt-28 xl:pt-20 bg-[#102022]"
+    aria-labelledby="main-title"
+    id="nosotros"
+  >
+    <h1 class="text-4xl sm:text-5xl lg:text-6xl text-main text-center">
+      <span class="important-text text-white">¿Quiénes</span>
+      <span class="important-text text-main">somos?</span>
+    </h1>
+  
+    <div class="grid lg:flex w-full mt-20 bg-[#091214]/40">
+      <img
+        src="/appluna.avif"
+        alt=""
+        class="w-full lg:w-[50%] object-cover"
+        width="700"
+        height="700"
+      />
+      <div class="grid w-full lg:w-[50%] text-white p-10 xl:p-0 text-justify mx-auto my-auto max-w-[90%] lg:max-w-[40%] pb-20 gap-8">
+        <div class="flex items-center gap-3 justify-center lg:justify-start">
+          <FontAwesomeIcon icon={faInfoCircle} className="hidden xl:flex size-5 text-main" />
+          <h2 class="text-3xl text-center lg:text-left xl:mt-0">
+            ¿Qué es el Aula de Software Libre?
+          </h2>
+        </div>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque
+          laborum at nobis exercitationem molestias voluptatum praesentium
+          ipsum, earum inventore velit veniam mollitia consectetur. Molestiae
+          ullam tempore tempora deserunt corporis illum.
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque
+          laborum at nobis exercitationem molestias voluptatum praesentium
+          ipsum, earum inventore velit veniam mollitia consectetur. Molestiae
+          ullam tempore tempora deserunt corporis illum.
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque
+          laborum at nobis exercitationem molestias voluptatum praesentium
+          ipsum, earum inventore velit veniam mollitia consectetur. Molestiae
+          ullam tempore tempora deserunt corporis illum.
+        </p>
+      </div>
+    </div>
+  </section>
+  
+  
+
+    <section
       class="flex flex-col items-center justify-center pt-32 md:pt-24 lg:pt-28 xl:pt-32 bg-[#172d30] bg-center bg-cover bg-clip-padding"
       aria-labelledby="main-title"
     >
@@ -66,18 +153,20 @@ const teamMembers = [
           <span class="important-text text-white">equipo</span>
         </h1>
 
-        <section
+        <div
           id="equipo"
           class="grid grid-cols-2 md:grid-cols-5 lg:grid-cols-5 xl:grid-cols-5 gap-6 mt-16 mb-32 justify-items-center"
         >
-          {teamMembers.map((member) => (
-            <PersonCard
-              imgSrc={member.imgSrc}
-              altText={member.altText}
-              name={member.name}
-            />
-          ))}
-        </section>
+          {
+            teamMembers.map((member) => (
+              <PersonCard
+                imgSrc={member.imgSrc}
+                altText={member.altText}
+                name={member.name}
+              />
+            ))
+          }
+        </div>
       </div>
     </section>
   </main>

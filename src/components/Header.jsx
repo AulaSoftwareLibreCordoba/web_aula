@@ -17,7 +17,6 @@ const Header = () => {
   return (
     <header className="bg-gradient-to-b from-[#14272a] to-transparent w-screen h-20 fixed z-50">
       <div className="flex items-center h-full justify-between px-6 relative">
-
         <ul className="flex gap-5 text-slate-300 justify-center w-full">
           <li>
             <a href="/" aria-label="Logo" className="flex items-center">
@@ -27,7 +26,7 @@ const Header = () => {
         </ul>
 
         <nav className="absolute top-1/2 right-4 transform -translate-y-1/2">
-          <ul className="hidden lg:flex gap-5 xl:gap-8 text-slate-300 text-base">
+          <ul className="hidden lg:flex gap-5 xl:gap-8 text-slate-300 text-base mr-4  ">
             <li>
               <a
                 href="/"
@@ -54,16 +53,19 @@ const Header = () => {
             </li>
             <li>
               <a
-                href="#contacto"
+                href="/#Nosotros"
+                className="hover:text-main transition-all duration-300"
+              >
+                Nosotros
+              </a>
+            </li>
+            <li>
+              <a
+                href="/#contacto"
                 className="hover:text-main transition-all duration-300"
               >
                 Contacto
               </a>
-            </li>
-            <li>
-              <button className="hover:text-main transition-all duration-300">
-                Suscríbete
-              </button>
             </li>
           </ul>
 
@@ -104,16 +106,19 @@ const Header = () => {
                 </li>
                 <li>
                   <a
+                    href="/#nosotros"
+                    className="block px-4 py-2 hover:text-main hover:bg-[#23454a] transition-all duration-300"
+                  >
+                    Nosotros
+                  </a>
+                </li>
+                <li>
+                  <a
                     href="/#contacto"
                     className="block px-4 py-2 hover:text-main hover:bg-[#23454a] transition-all duration-300"
                   >
                     Contacto
                   </a>
-                </li>
-                <li>
-                  <button className="block px-4 py-2 text-end w-full hover:text-main hover:bg-[#23454a] transition-all duration-300">
-                    Suscríbete
-                  </button>
                 </li>
               </ul>
             )}

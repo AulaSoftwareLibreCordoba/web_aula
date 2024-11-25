@@ -15,3 +15,7 @@ const PersonCard = ({ imgSrc, altText, name }) => {
 };
 
 export default PersonCard;
+
+
+
+

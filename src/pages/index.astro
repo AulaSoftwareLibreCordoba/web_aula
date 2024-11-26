@@ -5,6 +5,8 @@ import PersonCard from "../components/PersonCard";
 import Layout from "../layouts/Layout.astro";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
+import { getSession } from "auth-astro/server";
+const session = await getSession(Astro.request);
 
 const teamMembers = [
   {
@@ -74,14 +76,21 @@ const teamMembers = [
           <span class="important-text text-white">Bienvenid@ al</span>
           <span class="important-text text-main">Aula de Software Libre</span>
         </h1>
-        <p
-          class="max-w-md mx-auto text-sm md:text-lg font-normal text-slate-300 mb-6"
-        >
-          Transformamos Ideas en Soluciones Abiertas, Fomentando el Conocimiento
-          y la Creatividad en Cada Proyecto.
-        </p>
 
-        <Btn href="/register" text="Únete a nosotros" />
+        {
+          session ? (
+            <p class="max-w-md mx-auto text-sm md:text-lg font-normal text-slate-300 mb-6">
+              Bienvenido {session.user?.name}
+            </p>
+          ) : (
+            <p class="max-w-md mx-auto text-sm md:text-lg font-normal text-slate-300 mb-6">
+              Transformamos Ideas en Soluciones Abiertas, Fomentando el
+              Conocimiento y la Creatividad en Cada Proyecto.
+            </p>
+          )
+        }
+
+        <Btn href="/login" text="Únete a nosotros" />
       </div>
 
       <div class="w-full flex justify-center mt-auto px-4">
@@ -133,20 +142,17 @@ const teamMembers = [
             la innovación y preparar a nuestros estudiantes para el éxito en el
             mundo laboral y el fomento de los valores del Software libre.
             Nuestro objetivo es establecer un espacio equipado con tecnologías y
-            recursos necesarios para que
-            los estudiantes puedan explorar, aprender y desarrollar habilidades
-            en el ámbito del software libre. 
-            <br><br>
-            La finalidad del Aula de Software
-            Libre es ofrecer a nuestros estudiantes un entorno propicio para la
-            experimentación, la creatividad y el aprendizaje colaborativo.
-            Queremos impulsar el desarrollo de habilidades técnicas y el
-            pensamiento crítico, preparando a nuestros compañeros para enfrentar
-            los desafíos del mundo laboral con confianza y competencia. Dar la
-            posibilidad de aportar a los alumnos sus
-            habilidades,conocimientos,recursos e incluso contactos con un fin
-            altruista y constructivo en son de la mejora continua y apoyo entre
-            compañeros.
+            recursos necesarios para que los estudiantes puedan explorar,
+            aprender y desarrollar habilidades en el ámbito del software libre.
+            <br /><br />
+            La finalidad del Aula de Software Libre es ofrecer a nuestros estudiantes
+            un entorno propicio para la experimentación, la creatividad y el aprendizaje
+            colaborativo. Queremos impulsar el desarrollo de habilidades técnicas
+            y el pensamiento crítico, preparando a nuestros compañeros para enfrentar
+            los desafíos del mundo laboral con confianza y competencia. Dar la posibilidad
+            de aportar a los alumnos sus habilidades,conocimientos,recursos e incluso
+            contactos con un fin altruista y constructivo en son de la mejora continua
+            y apoyo entre compañeros.
           </p>
         </div>
       </div>
@@ -184,6 +190,3 @@ const teamMembers = [
   </main>
   <Contacto />
 </Layout>
-
-
-

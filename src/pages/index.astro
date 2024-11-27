@@ -5,6 +5,8 @@ import PersonCard from "../components/PersonCard";
 import Layout from "../layouts/Layout.astro";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
+import { getSession } from "auth-astro/server";
+const session = await getSession(Astro.request);
 
 const teamMembers = [
   {
@@ -74,14 +76,44 @@ const teamMembers = [
           <span class="important-text text-white">Bienvenid@ al</span>
           <span class="important-text text-main">Aula de Software Libre</span>
         </h1>
-        <p
-          class="max-w-md mx-auto text-sm md:text-lg font-normal text-slate-300 mb-6"
-        >
-          Transformamos Ideas en Soluciones Abiertas, Fomentando el Conocimiento
-          y la Creatividad en Cada Proyecto.
-        </p>
 
-        <Btn href="/register" text="Únete a nosotros" />
+        {
+          session ? (
+            <p class="max-w-md mx-auto text-sm md:text-lg font-normal text-slate-300 mb-6">
+              ¡Bienvenido, {session.user?.name}!
+            </p>
+          ) : (
+            <p class="max-w-md mx-auto text-sm md:text-lg font-normal text-slate-300 mb-6">
+              Transformamos Ideas en Soluciones Abiertas, Fomentando el
+              Conocimiento y la Creatividad en Cada Proyecto.
+            </p>
+          )
+        }
+        {
+          session ? (
+            <button
+              id="logout"
+              class="cursor-pointer w-auto mb-10 inline-flex items-center justify-center py-3 px-6 text-base font-semibold text-center text-slate-800 rounded-full bg-[#e6ff2b] shadow-xs hover:bg-[#a3af4a] hover:scale-105 transition-all duration-500"
+            >
+              Cerrar sesión
+              <svg
+                class="ml-2"
+                width="20"
+                height="20"
+                viewBox="0 0 20 20"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M7.5 15L11.0858 11.4142C11.7525 10.7475 12.0858 10.4142 12.0858 10C12.0858 9.58579 11.7525 9.25245 11.0858 8.58579L7.5 5"
+                  stroke="black"
+                />
+              </svg>
+            </button>
+          ) : (
+            <Btn href="/login" text="Únete a nosotros" />
+          )
+        }
       </div>
 
       <div class="w-full flex justify-center mt-auto px-4">
@@ -108,7 +140,7 @@ const teamMembers = [
 
       <div class="grid lg:flex w-full mt-20 bg-[#091214]/40">
         <img
-          src="/appluna.avif"
+          src="/foto.webp"
           alt=""
           class="w-full lg:w-[50%] object-cover"
           loading="lazy"
@@ -133,20 +165,17 @@ const teamMembers = [
             la innovación y preparar a nuestros estudiantes para el éxito en el
             mundo laboral y el fomento de los valores del Software libre.
             Nuestro objetivo es establecer un espacio equipado con tecnologías y
-            recursos necesarios para que
-            los estudiantes puedan explorar, aprender y desarrollar habilidades
-            en el ámbito del software libre. 
-            <br><br>
-            La finalidad del Aula de Software
-            Libre es ofrecer a nuestros estudiantes un entorno propicio para la
-            experimentación, la creatividad y el aprendizaje colaborativo.
-            Queremos impulsar el desarrollo de habilidades técnicas y el
-            pensamiento crítico, preparando a nuestros compañeros para enfrentar
-            los desafíos del mundo laboral con confianza y competencia. Dar la
-            posibilidad de aportar a los alumnos sus
-            habilidades,conocimientos,recursos e incluso contactos con un fin
-            altruista y constructivo en son de la mejora continua y apoyo entre
-            compañeros.
+            recursos necesarios para que los estudiantes puedan explorar,
+            aprender y desarrollar habilidades en el ámbito del software libre.
+            <br /><br />
+            La finalidad del Aula de Software Libre es ofrecer a nuestros estudiantes
+            un entorno propicio para la experimentación, la creatividad y el aprendizaje
+            colaborativo. Queremos impulsar el desarrollo de habilidades técnicas
+            y el pensamiento crítico, preparando a nuestros compañeros para enfrentar
+            los desafíos del mundo laboral con confianza y competencia. Dar la posibilidad
+            de aportar a los alumnos sus habilidades,conocimientos,recursos e incluso
+            contactos con un fin altruista y constructivo en son de la mejora continua
+            y apoyo entre compañeros.
           </p>
         </div>
       </div>
@@ -185,5 +214,7 @@ const teamMembers = [
   <Contacto />
 </Layout>
 
-
-
+<script is="">
+  const { signOut } = await import("auth-astro/client");
+  document.querySelector("#logout").onclick = () => signOut();
+</script>

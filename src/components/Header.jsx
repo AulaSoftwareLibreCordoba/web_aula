@@ -19,12 +19,12 @@ const Header = () => {
       <div className="flex items-center h-full justify-between px-6 relative">
         <ul className="flex gap-5 text-slate-300 justify-center w-full">
           <li>
-              <LogoAula />
+            <LogoAula />
           </li>
         </ul>
 
         <nav className="absolute top-1/2 right-4 transform -translate-y-1/2">
-          <ul className="hidden lg:flex gap-5 xl:gap-8 text-slate-300 text-base mr-4  ">
+          <ul className="hidden lg:flex gap-5 xl:gap-8 text-slate-300 text-base mr-4">
             <li>
               <a
                 href="/"

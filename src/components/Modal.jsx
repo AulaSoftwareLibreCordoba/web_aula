@@ -1,26 +1,10 @@
-import { motion } from "framer-motion";
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React from 'react';
+import { motion } from 'framer-motion';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
-const Modal = ({
-  isOpen,
-  handleClose,
-  projectTitle,
-  estado,
-  description,
-  participantes,
-  urlForm,
-  isFull,
-  imgSrc,
-  altText,
-}) => {
+const Modal = ({ isOpen, handleClose, projectTitle, estado, description, participantes, urlForm, isFull, imgSrc, altText, isLogged }) => {
   if (!isOpen) return null;
-
-  const handleBackdropClick = (e) => {
-    if (e.target === e.currentTarget) {
-      handleClose();
-    }
-  };
 
   const backdropVariants = {
     hidden: { opacity: 0 },
@@ -33,10 +17,39 @@ const Modal = ({
     exit: { y: "100vh", opacity: 0 },
   };
 
+  const checkIsFull = () => {
+    return isFull ? (
+      <span className="text-red-500 font-bold">Proyecto cerrado</span>
+    ) : (
+      !isLogged ? (
+        <div className="grid gap-2">
+          <span className="text-main font-bold">Debes iniciar sesión para apuntarte</span>
+          <a
+            href="/login"
+            className="bg-main text-black px-4 py-2 rounded-full hover:bg-[#8a9938] transition-all duration-300 shadow-md"
+            target="_blank"
+            rel="noopener noreferrer"
+            >
+              ¡Inicia sesión!
+          </a>
+        </div>
+      ) : (
+        <a
+          href={urlForm}
+          className="bg-main text-black px-4 py-2 rounded-full hover:bg-[#8a9938] transition-all duration-300 shadow-md"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          ¡Apúntate al proyecto!
+        </a>
+      )
+    );
+  };
+
   return (
     <motion.div
       className="fixed inset-0 bg-[#14272a]/80 flex justify-center items-center z-50"
-      onClick={handleBackdropClick}
+      onClick={handleClose}
       variants={backdropVariants}
       initial="hidden"
       animate="visible"
@@ -62,33 +75,14 @@ const Modal = ({
         </div>
 
         <div className="flex flex-col justify-between p-6 w-full md:w-2/3 h-2/3 md:h-full">
-          <h1 className="text-2xl md:text-4xl font-bold mb-4 text-center">
-            {projectTitle}
-          </h1>
+          <h1 className="text-2xl md:text-4xl font-bold mb-4 text-center">{projectTitle}</h1>
           <div className="text-sm md:text-base text-start space-y-4">
-            <p>
-              <strong className="text-main">Estado:</strong> {estado}
-            </p>
-            <p>
-              <strong className="text-main">Descripción:</strong> {description}
-            </p>
-            <p>
-              <strong className="text-main">Participantes:</strong> {participantes}
-            </p>
+            <p><strong className="text-main">Estado:</strong> {estado}</p>
+            <p><strong className="text-main">Descripción:</strong> {description}</p>
+            <p><strong className="text-main">Participantes:</strong> {participantes}</p>
           </div>
           <div className="mt-6 flex justify-center">
-            {isFull ? (
-              <span className="text-red-500 font-bold">Proyecto cerrado</span>
-            ) : (
-              <a
-                href={urlForm}
-                className="bg-main text-black px-4 py-2 rounded-full hover:bg-[#8a9938] transition-all duration-300 shadow-md"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                ¡Apúntate al proyecto!
-              </a>
-            )}
+            {checkIsFull()}
           </div>
         </div>
       </motion.div>

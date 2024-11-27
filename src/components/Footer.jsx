@@ -64,9 +64,7 @@ const Footer = () => {
         <p className="mt-10 mb-10 text-center text-xs text-slate-300">
           Diseñado y desarrollado por el Aula de Software Libre
         </p>
-        <a href="/juan.jpeg" >
-          <FontAwesomeIcon icon={faCode} className="size-3 text-slate-300" />
-        </a>
+        <FontAwesomeIcon icon={faCode} className="size-3 text-slate-300" />
       </div>
     </footer>
   );

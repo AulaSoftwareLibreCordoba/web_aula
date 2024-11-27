@@ -7,8 +7,12 @@ import { defineConfig } from 'auth-astro';
 export default defineConfig({
   providers: [
     GitHub({
-      clientId: import.meta.env.GITHUB_CLIENT_ID,
+      clientId: import.meta.env.GITHUB_CLIENT_ID, 
       clientSecret: import.meta.env.GITHUB_CLIENT_SECRET,
+    }),
+    GitHub({
+      clientId: import.meta.env.GITHUB_CLIENT_PROD_ID, 
+      clientSecret: import.meta.env.GITHUB_CLIENT_PROD_SECRET,
     }),
     Google({
       clientId: import.meta.env.GOOGLE_CLIENT_ID,

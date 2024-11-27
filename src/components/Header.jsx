@@ -6,18 +6,12 @@ import {
   faTimes,
 } from "@fortawesome/free-solid-svg-icons";
 import LogoAula from "./LogoAula";
-import { signOut } from "auth-astro/client";
-import { AstroAuth, getSession } from 'auth-astro/server';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
-  };
-
-  const handleLogout = () => {
-    signOut();
   };
 
   return (
@@ -71,14 +65,6 @@ const Header = () => {
                 Contacto
               </a>
             </li>
-            <li>
-              <button
-                onClick={handleLogout}
-                className="hover:text-main transition-all duration-300"
-              >
-                Cerrar sesión
-              </button>
-            </li>
           </ul>
 
           <div className="lg:hidden relative">
@@ -130,14 +116,6 @@ const Header = () => {
                     className="block px-4 py-2 hover:text-main hover:bg-[#23454a] transition-all duration-300"
                   >
                     Contacto
-                  </a>
-                </li>
-                <li>
-                  <a
-                    onClick={handleLogout}
-                    className="block px-4 py-2 hover:text-main hover:bg-[#23454a] transition-all duration-300 cursor-pointer"
-                  >
-                    Cerrar sesión
                   </a>
                 </li>
               </ul>

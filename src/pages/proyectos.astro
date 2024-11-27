@@ -2,6 +2,10 @@
 import Layout from "../layouts/Layout.astro";
 import Btn from "../components/Btn.jsx";
 import ProjectComponent from "../components/ProjectComponent.jsx";
+import { getSession } from "auth-astro/server";
+import { check } from "@astrojs/check";
+const session = await getSession(Astro.request)
+const isLogged = !!session;
 
 const projects = [
   {
@@ -98,7 +102,7 @@ const projects = [
         <span class="important-text text-main">activos</span>
       </h1>
 
-      <div class="flex flex-wrap justify-center m-10 gap-5 lg:max-w-[70%] mx-auto ">
+      <div class="flex flex-wrap justify-center m-10 gap-5 max-w-[90%] mx-auto ">
         {projects.map((project) => (
           <ProjectComponent
             client:load
@@ -110,6 +114,7 @@ const projects = [
             description={project.description}
             urlForm={project.urlForm}
             isFull={project.isFull}
+            isLogged={isLogged}
           />
         ))}
       </div>

@@ -3,7 +3,12 @@ import Layout from "../layouts/Layout.astro";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { FcGoogle } from "react-icons/fc";
-// const apiUrl = import.meta.env.ENDPOINT_LOGIN;
+import { getSession } from "auth-astro/server";
+const session = await getSession(Astro.request)
+
+if (session) {
+  return Astro.redirect('/');
+}
 ---
 
 <Layout title="Aula Software Libre - Inicio de sesión">

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Modal from "./Modal";
 
-const ProjectComponent = ({ imgSrc, altText, projectTitle, estado, description, participantes, urlForm, isFull }) => {
+const ProjectComponent = ({ imgSrc, altText, projectTitle, estado, description, participantes, urlForm, isFull, isLogged}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleOpenModal = () => {
@@ -15,7 +15,7 @@ const ProjectComponent = ({ imgSrc, altText, projectTitle, estado, description, 
   return (
     <div>
       <button
-        className="relative bg-[#14272a]/80 w-80 rounded-xl text-center cursor-pointer"
+        className="relative bg-[#14272a]/80 w-72 rounded-xl text-center cursor-pointer"
         onClick={handleOpenModal}
       >
         <img src={imgSrc} alt={altText} className="rounded-xl" />
@@ -49,6 +49,7 @@ const ProjectComponent = ({ imgSrc, altText, projectTitle, estado, description, 
         urlForm={urlForm}
         isFull={isFull}
         imgSrc={imgSrc}
+        isLogged={isLogged}
       />
     </div>
   );

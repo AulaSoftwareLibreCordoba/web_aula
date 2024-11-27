@@ -115,12 +115,20 @@ if (session) {
     </div>
   </div>
 
-  <script is="">
+  <script>
     const { signIn } = await import("auth-astro/client");
-    document.querySelector("#loginGithub").onclick = () => signIn("github");
-    document.querySelector("#loginGoogle").onclick = () => signIn("google");
+  
+    const githubButton = document.querySelector("#loginGithub");
+    const googleButton = document.querySelector("#loginGoogle");
+  
+    if (githubButton) {
+      githubButton.addEventListener("click", () => signIn("github"));
+    }
+    if (googleButton) {
+      googleButton.addEventListener("click", () => signIn("google"));
+    }
   </script>
-
+  
   <!-- // const formulario = document.getElementById("login"); // const
   alertContainer = document.getElementById("alertContainer"); // const
   alertMessage = document.getElementById("alertMessage"); // function

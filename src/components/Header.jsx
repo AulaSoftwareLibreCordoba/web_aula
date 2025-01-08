@@ -41,7 +41,7 @@ const Header = () => {
                 Proyectos
               </a>
             </li>
-            <li className="hidden">
+            <li>
               <a
                 href="/eventos"
                 className="hover:text-main transition-all duration-300"
@@ -94,7 +94,7 @@ const Header = () => {
                     Proyectos
                   </a>
                 </li>
-                <li className="hidden">
+                <li>
                   <a
                     href="/eventos"
                     className="block px-4 py-2 hover:text-main hover:bg-[#23454a] transition-all duration-300"

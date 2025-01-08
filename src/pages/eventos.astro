@@ -1,7 +1,11 @@
 ---
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Btn from "../components/Btn";
 import LogoAula from "../components/LogoAula";
 import Layout from "../layouts/Layout.astro";
+import { faClock } from "@fortawesome/free-solid-svg-icons";
+import { faLocationPin } from "@fortawesome/free-solid-svg-icons";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 ---
 
 <!doctype html>
@@ -18,6 +22,35 @@ import Layout from "../layouts/Layout.astro";
       >
         <section id="presentaciondescrip">
           <h1 class="text-center text-6xl text-white">¡Nuestro primer evento!</h1>
+          
+          <div class="flex m-10">
+            <p class="text-lg font-bold max-w-lg flex text-white text-center mx-auto my-auto">
+              ¡Nos congratulo anunciar que el próximo XX de XXXX de 2025 tendrá lugar
+              el primer evento de presentación del Aula de Software Libre! Este primer
+              evento será una ocasión muy especial en la que presentaremos de forma oficial
+              esta iniciativa que hemos estado preparando con tanto cariño y dedicación.
+              ¡Puedes adquirir tu entrada gratuita para este evento aquí mismo! Te esperamos
+            </p>
+            <div class="grid items-center mx-auto">
+              <div class="flex flex-col items-center gap-5">
+                <div class="flex flex-col items-center gap-5">
+                  <FontAwesomeIcon icon={faClock} className="text-main text-4xl" />
+                  <span class="text-white">XX/XX/2025 - XX:XXh</span>
+                </div>
+                <div class="flex flex-col items-center gap-5">
+                  <FontAwesomeIcon icon={faLocationPin} className="text-main text-4xl" />
+                  <span class="text-white">C. de las Peñas Cordobesas, s/n, Sureste, 14010 Córdoba</span>
+                </div>
+                <div class="flex flex-col items-center gap-5">
+                  <FontAwesomeIcon icon={faUser} className="text-main text-4xl" />
+                  <span class="text-white">Aforo: 100 personas</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
         </section>
 
         <section id="ponencias">
@@ -26,6 +59,7 @@ import Layout from "../layouts/Layout.astro";
 
         <section id="entradas">
           <h1 class="text-center text-6xl text-white">Entradas</h1>
+          
         </section>
 
         <section

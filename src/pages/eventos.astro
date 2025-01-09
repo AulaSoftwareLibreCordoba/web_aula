@@ -24,47 +24,79 @@ import { faUser } from "@fortawesome/free-solid-svg-icons";
           <h1 class="text-center w-screen text-3xl md:text-6xl text-white">¡Nuestro primer evento! 🫂</h1>
           
           <div class="grid md:flex mt-10 mb-10 bg-[#14272a]/70 w-screen">
-            <p class="text-base max-w-sm mt-10 md:mt-20 md:text-xl font-bold md:max-w-lg flex text-white text-center mx-auto my-auto">
-              ¡Nos congratula anunciar que el próximo XX de XXXX de 2025 tendrá lugar
-              el primer evento de presentación del Aula de Software Libre! Este primer
-              evento será una ocasión muy especial en la que presentaremos de forma oficial
-              esta iniciativa que hemos estado preparando con tanto cariño y dedicación.
-              ¡Puedes adquirir tu entrada gratuita para este evento aquí mismo! Te esperamos
-            </p>
-            <div class="grid items-center mx-auto m-10 max-w-sm text-center">
+            <div class="grid gap-8 text-center mx-auto my-auto p-4">
+              <p class="text-base max-w-sm mt-10 md:mt-20 md:text-xl font-bold md:max-w-lg flex text-white">
+                ¡Nos congratula anunciar que el próximo XX de XXXX de 2025 tendrá lugar
+                el primer evento de presentación del Aula de Software Libre! Este primer
+                evento será una ocasión muy especial en la que presentaremos de forma oficial
+                esta iniciativa que hemos estado preparando con tanto cariño y dedicación.
+                ¡Puedes adquirir tu entrada gratuita para este evento aquí mismo! Te esperamos
+              </p>
+              <div class="flex flex-col md:flex-row gap-20 justify-center md:mb-10 max-w-xs mx-auto md:max-w-xl">
+                <div>
+                  <h2 class="text-white text-xl">¡No te quedes sin la tuya!</h2>
+                  <span class="text-main">Actualmente quedan: X entradas</span>
+                </div>
+
+                <Btn 
+                  text="Adquirir entrada" 
+                  href="/entradas"
+                />
+              </div>
+            </div>
+            <div class="grid items-center mx-auto m-10 max-w-sm text-center p-4">
               <div class="flex flex-col items-center gap-5">
                 <div class="flex flex-col items-center gap-5">
-                  <FontAwesomeIcon icon={faClock} className="text-main text-4xl" />
+                  <FontAwesomeIcon icon={faClock} className="text-main size-10" />
                   <span class="text-white">XX/XX/2025 - XX:XXh</span>
                 </div>
                 <div class="flex flex-col items-center gap-5">
-                  <FontAwesomeIcon icon={faLocationPin} className="text-main text-4xl" />
+                  <FontAwesomeIcon icon={faLocationPin} className="text-main size-10" />
                   <span class="text-white">C. de las Peñas Cordobesas, s/n, Sureste, 14010 Córdoba</span>
                 </div>
                 <div class="flex flex-col items-center gap-5">
-                  <FontAwesomeIcon icon={faUser} className="text-main text-4xl" />
+                  <FontAwesomeIcon icon={faUser} className="text-main size-10" />
                   <span class="text-white">Aforo: 100 personas</span>
                 </div>
               </div>
             </div>
           </div>
         </section>
-
-
-        </section>
-
+        
         <section id="ponencias">
-          <h1 class="text-center w-screen text-3xl md:text-6xl text-main">Ponencias</h1>
-        </section>
+          <h1 class="text-center w-screen text-3xl md:text-6xl text-main">Ponencias 🎤</h1>
 
-        <section id="entradas">
-          <h1 class="text-center w-screen text-3xl md:text-6xl text-white">Entradas</h1>
-          
+          <div class="grid md:flex justify-center gap-12 mt-20 mb-20">
+            <div class="grid text-white text-xl text-center">
+              <img src="/usuario.png" class="size-32 lg:size-56 ponente" alt="usuario1">
+              <h2 class="mt-5">Ponente 1</h2>
+            </div>
+
+            <div class="grid text-white text-xl text-center">
+              <img src="/usuario.png" class="size-32 lg:size-56 ponente" alt="usuario2">
+              <h2 class="mt-5">Ponente 2</h2>
+            </div>
+            
+            <div class="grid text-white text-xl text-center">
+              <img src="/usuario.png" class="size-32 lg:size-56 ponente" alt="usuario3">
+              <h2 class="mt-5">Ponente 3</h2>
+            </div>
+
+            <div class="grid text-white text-xl text-center">
+              <img src="/usuario.png" class="size-32 lg:size-56 ponente" alt="usuario4">
+              <h2 class="mt-5">Ponente 4</h2>
+            </div>
+
+            <div class="grid text-white text-xl text-center">
+              <img src="/usuario.png" class="size-32 lg:size-56 ponente" alt="usuario5">
+              <h2 class="mt-5">Ponente 5</h2>
+            </div>
+          </div>
         </section>
 
         <section
           id="ubicacion"
-          class="grid gap-10 text-center md:flex bg-[#14272a]/70 p-10 md:gap-14 justify-center"
+          class="grid gap-10 w-screen text-center md:flex bg-[#14272a]/70 p-10 md:gap-14 justify-center"
         >
           <div class="md:max-w-[50%] mx-auto text-center">
             <h1 class="text-4xl md:text-5xl mb-10">
@@ -108,3 +140,13 @@ import { faUser } from "@fortawesome/free-solid-svg-icons";
     </Layout>
   </body>
 </html>
+
+<style>
+
+  .ponente {
+    mask-image: linear-gradient(
+      black 80%, transparent
+    );
+  }
+
+</style>

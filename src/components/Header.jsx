@@ -51,6 +51,14 @@ const Header = () => {
             </li>
             <li>
               <a
+                href="/talleres"
+                className="hover:text-main transition-all duration-300"
+              >
+                Talleres
+              </a>
+            </li>
+            <li>
+              <a
                 href="/#Nosotros"
                 className="hover:text-main transition-all duration-300"
               >
@@ -100,6 +108,14 @@ const Header = () => {
                     className="block px-4 py-2 hover:text-main hover:bg-[#23454a] transition-all duration-300"
                   >
                     Eventos
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/talleres"
+                    className="block px-4 py-2 hover:text-main hover:bg-[#23454a] transition-all duration-300"
+                  >
+                    Talleres
                   </a>
                 </li>
                 <li>

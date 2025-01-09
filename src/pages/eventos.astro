@@ -17,21 +17,21 @@ import { faUser } from "@fortawesome/free-solid-svg-icons";
   <body>
     <Layout title="Aula Software Libre - Eventos">
       <main
-        class="flex flex-col justify-between min-h-screen pt-32 md:pt-24 lg:pt-28 xl:pt-32 bg-hero-gradient bg-center bg-cover bg-clip-padding"
+        class="grid justify-between overflow-x-hidden pt-32 md:pt-24 lg:pt-28 xl:pt-32 bg-hero-gradient bg-center bg-cover bg-clip-padding"
         aria-labelledby="main-title"
       >
         <section id="presentaciondescrip">
-          <h1 class="text-center text-6xl text-white">¡Nuestro primer evento!</h1>
+          <h1 class="text-center w-screen text-3xl md:text-6xl text-white">¡Nuestro primer evento! 🫂</h1>
           
-          <div class="flex m-10">
-            <p class="text-lg font-bold max-w-lg flex text-white text-center mx-auto my-auto">
-              ¡Nos congratulo anunciar que el próximo XX de XXXX de 2025 tendrá lugar
+          <div class="grid md:flex mt-10 mb-10 bg-[#14272a]/70 w-screen">
+            <p class="text-base max-w-sm mt-10 md:mt-20 md:text-xl font-bold md:max-w-lg flex text-white text-center mx-auto my-auto">
+              ¡Nos congratula anunciar que el próximo XX de XXXX de 2025 tendrá lugar
               el primer evento de presentación del Aula de Software Libre! Este primer
               evento será una ocasión muy especial en la que presentaremos de forma oficial
               esta iniciativa que hemos estado preparando con tanto cariño y dedicación.
               ¡Puedes adquirir tu entrada gratuita para este evento aquí mismo! Te esperamos
             </p>
-            <div class="grid items-center mx-auto">
+            <div class="grid items-center mx-auto m-10 max-w-sm text-center">
               <div class="flex flex-col items-center gap-5">
                 <div class="flex flex-col items-center gap-5">
                   <FontAwesomeIcon icon={faClock} className="text-main text-4xl" />
@@ -54,11 +54,11 @@ import { faUser } from "@fortawesome/free-solid-svg-icons";
         </section>
 
         <section id="ponencias">
-          <h1 class="text-center text-6xl text-main">Nuestros invitados</h1>
+          <h1 class="text-center w-screen text-3xl md:text-6xl text-main">Ponencias</h1>
         </section>
 
         <section id="entradas">
-          <h1 class="text-center text-6xl text-white">Entradas</h1>
+          <h1 class="text-center w-screen text-3xl md:text-6xl text-white">Entradas</h1>
           
         </section>
 

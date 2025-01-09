@@ -9,7 +9,7 @@ const LogoAula = () => {
       viewBox="0 0 375 374.999991"
       preserveAspectRatio="xMidYMid meet"
       version="1.0"
-      className="size-12 rounded-full "
+      className="size-12 rounded-full border"
     >
       <rect
         x="-37.5"

@@ -6,27 +6,11 @@ const LogoAula = () => {
       width="500"
       height="500"
       zoomAndPan="magnify"
-      viewBox="0 0 375 374.999991"
+      viewBox="0 0 375 375"
       preserveAspectRatio="xMidYMid meet"
       version="1.0"
-      className="size-12 rounded-full border"
+      className="size-12 rounded-full"
     >
-      <rect
-        x="-37.5"
-        y="-37.499999"
-        width="450"
-        height="449.999989"
-        fill="#ffffff"
-        fillOpacity="1"
-      ></rect>
-      <rect
-        x="-37.5"
-        y="-37.499999"
-        width="450"
-        height="449.999989"
-        fill="#ffffff"
-        fillOpacity="1"
-      ></rect>
       <rect
         x="-37.5"
         y="-37.499999"

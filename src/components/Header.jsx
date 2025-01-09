@@ -24,7 +24,7 @@ const Header = () => {
         </ul>
 
         <nav className="absolute top-1/2 right-4 transform -translate-y-1/2">
-          <ul className="hidden lg:flex gap-5 xl:gap-8 text-slate-300 text-base mr-4">
+          <ul className="hidden lg:flex gap-5 xl:gap-7 text-slate-300 text-sm mr-4">
             <li>
               <a
                 href="/"
